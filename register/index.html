@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amal Chamama Hackathon & Game Jam - Registration</title>
+  <!-- Replace 'raw.png' and 'circuit-bg.jpg' with your actual assets -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0a0a0a;
+      --primary-color: #00baff;
+      --text-color: #f0f0f0;
+      --surface-color: #1a1a1a;
+      --transition: 0.3s ease;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    header {
+      background: rgba(0,0,0,0.8);
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    .nav-container {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem; position: relative;
+    }
+    .logo img { height: 50px; }
+
+    /* Hamburger button */
+    .menu-toggle {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      position: absolute; top: 1rem; right: 1rem;
+      padding: 0; margin: 0;
+    }
+    .menu-toggle span {
+      display: block; width: 25px; height: 3px;
+      margin: 5px; background: var(--text-color);
+      transition: transform var(--transition);
+    }
+
+    .nav-links {
+      list-style: none; display: flex; gap: 1rem;
+      transition: max-height 0.3s ease;
+    }
+    .nav-links a {
+      color: var(--text-color); text-decoration: none;
+      font-weight: 500; padding: 0.5rem; position: relative;
+    }
+    .nav-links a::after {
+      content: ""; position: absolute; left: 0; bottom: 0;
+      width: 0; height: 2px; background: var(--primary-color);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      .nav-links {
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--surface-color);
+        flex-direction: column; overflow: hidden; max-height: 0;
+      }
+      .nav-container.nav-open .nav-links { max-height: 300px; }
+      .nav-links li { text-align: center; padding: 0.75rem 0; }
+    }
+
+    .container {
+      padding: 120px 1rem 60px; max-width: 600px; margin: 0 auto;
+    }
+    h1 {
+      text-align: center; color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    form {
+      background: var(--surface-color); padding: 2rem;
+      border-radius: 8px; display: grid; gap: 1rem;
+    }
+    label { font-weight: 500; }
+    input {
+      width: 100%; padding: 0.8rem;
+      border: 1px solid #444; border-radius: 4px;
+      background: #111; color: var(--text-color);
+    }
+    input:focus {
+      outline: none; border-color: var(--primary-color);
+      box-shadow: 0 0 5px var(--primary-color);
+    }
+    .btn-submit {
+      background: var(--primary-color); color: #000;
+      padding: 0.8rem; border: none; border-radius: 4px;
+      font-weight: bold; cursor: pointer;
+      transition: background var(--transition);
+    }
+    .btn-submit:hover { background: #0088cc; }
+
+    /* Modal */
+    .modal {
+      position: fixed; inset: 0; display: flex;
+      align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.7); visibility: hidden;
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .modal.show { visibility: visible; opacity: 1; }
+    .modal-content {
+      background: var(--surface-color); padding: 2rem;
+      border-radius: 8px; text-align: center; max-width: 400px;
+    }
+    .modal-content h2 { margin-bottom: 1rem; color: var(--primary-color); }
+    .close-btn {
+      background: none; border: 2px solid var(--primary-color);
+      padding: 0.5rem 1rem; color: var(--primary-color);
+      border-radius: 4px; cursor: pointer;
+      transition: background var(--transition);
+    }
+    .close-btn:hover { background: var(--primary-color); color: #000; }
+  </style>
+</head>
+<body>
+
+<header role="banner">
+  <div class="nav-container" id="main-nav">
+    <a href="index.html" class="logo"><img src="/images/raw.png" alt="Logo"></a>
+    <button class="menu-toggle" id="menu-btn" aria-label="Toggle navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav aria-label="Main navigation">
+      <ul class="nav-links">
+        <li><a href="/index.html#home">Home</a></li>
+        <li><a href="/index.html#about">About</a></li>
+        <li><a href="/index.html#prizes">Prizes</a></li>
+        <li><a href="/index.html#location">Location</a></li>
+        <li><a href="#" style="opacity:0.6; pointer-events:none;">Register</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container" id="register">
+  <h1>Register Your Team</h1>
+  <form id="register-form" novalidate>
+    <div>
+      <label for="teamName">Team Name</label>
+      <input type="text" id="teamName" name="teamName" required minlength="3" placeholder="Enter team name">
+    </div>
+    <div>
+      <label for="leaderEmail">Team Leader Email</label>
+      <input type="email" id="leaderEmail" name="leaderEmail" required placeholder="you@example.com">
+    </div>
+    <div>
+      <label for="participant1">Participant 1</label>
+      <input type="text" id="participant1" name="participant1" required placeholder="Full name">
+    </div>
+    <div>
+      <label for="participant2">Participant 2</label>
+      <input type="text" id="participant2" name="participant2" required placeholder="Full name">
+    </div>
+    <div>
+      <label for="participant3">Participant 3 (optional)</label>
+      <input type="text" id="participant3" name="participant3" placeholder="Full name">
+    </div>
+    <button type="submit" class="btn-submit">Submit Registration</button>
+  </form>
+</main>
+
+<!-- Success Modal -->
+<div id="success-modal" class="modal" role="dialog" aria-modal="true">
+  <div class="modal-content">
+    <h2>Registration Submitted!</h2>
+    <p>Thanks for registering. We’ve sent a confirmation email to the team leader.</p>
+    <button id="close-modal" class="close-btn">Close</button>
+  </div>
+</div>
+
+<script>
+  document.getElementById('menu-btn').addEventListener('click', () => {
+    document.getElementById('main-nav').classList.toggle('nav-open');
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('register-form');
+    const modal = document.getElementById('success-modal');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      if (form.checkValidity()) {
+        modal.classList.add('show');
+      } else {
+        form.reportValidity();
+      }
+    });
+    document.getElementById('close-modal').addEventListener('click', () => {
+      modal.classList.remove('show');
+      form.reset();
+    });
+  });
+</script>
+
+</body>
+</html>

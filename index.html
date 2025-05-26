@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amal Chamama Hackathon & Game Jam</title>
+  <!-- Replace 'raw.png' and 'circuit-bg.jpg' with your actual assets -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0a0a0a;
+      --primary-color: #00baff;
+      --text-color: #f0f0f0;
+      --surface-color: #1a1a1a;
+      --transition: 0.3s ease;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    header {
+      background: rgba(0,0,0,0.8);
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    .nav-container {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem;
+      position: relative;
+    }
+    .logo img { height: 50px; }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px;
+      background: var(--text-color);
+      transition: transform var(--transition);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      transition: max-height 0.3s ease;
+    }
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+      .nav-links {
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: var(--surface-color);
+        flex-direction: column;
+        overflow: hidden;
+        max-height: 0;
+      }
+      .nav-open .nav-links { max-height: 300px; }
+      .nav-links li { text-align: center; padding: 0.75rem 0; }
+    }
+
+    /* Rest of page styles */
+    section { padding: 100px 1rem 60px; }
+    .hero {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center;
+      padding: 160px 1rem 120px;
+      background: url('circuit-bg.jpg') center/cover no-repeat;
+      position: relative;
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      position: relative; max-width: 800px; z-index: 1;
+    }
+    .hero h1 {
+      font-size: 3rem; margin-bottom: 1rem;
+      color: var(--primary-color);
+      animation: fadeInDown 1s ease;
+    }
+    .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+    .btn {
+      display: inline-block; background: var(--primary-color);
+      color: #000; padding: 0.8rem 2rem; font-weight: bold;
+      border-radius: 4px; text-decoration: none;
+      transition: background var(--transition);
+    }
+    .btn:hover { background: #0088cc; }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .info {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+    }
+    .info-item {
+      background: var(--surface-color); padding: 1.5rem;
+      border-radius: 8px; transition: transform var(--transition);
+    }
+    .info-item:hover { transform: translateY(-5px); }
+    .info-item h3 { color: var(--primary-color); margin-bottom: 0.5rem; }
+    .info-item a { color: var(--primary-color); text-decoration: none; }
+
+    .prizes { background-color: var(--surface-color); }
+    .prizes-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .prize-card {
+      background: var(--bg-color); padding: 1.5rem;
+      border: 1px solid var(--primary-color); border-radius: 8px;
+      text-align: center;
+    }
+    .prize-card h4 { color: var(--primary-color); margin-bottom: 0.5rem; }
+
+    .location {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    }
+    .location iframe {
+      width: 100%; height: 300px; border: none;	border-radius: 8px;
+    }
+
+    footer {
+      background: var(--surface-color); text-align: center;
+      padding: 2rem 1rem;
+    }
+    footer a { color: var(--primary-color); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .location { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header role="banner">
+  <div class="nav-container" id="main-nav">
+    <a href="#home" class="logo"><img src="/images/raw.png" alt="Amal Chamama Hackathon & Game Jam Logo"></a>
+    <button class="menu-toggle" id="menu-btn" aria-label="Toggle navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav aria-label="Main navigation">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#prizes">Prizes</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="./register/index.html">Register</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Amal Chamama Hackathon & Game Jam</h1>
+    <p>Experience a 24-hour hackathon combined with a game jam at Amal Chamama High School. Code, collaborate, and create live!</p>
+    <a href="#register" class="btn">Register Now</a>
+  </div>
+</section>
+
+<section class="info" id="about">
+  <div class="info-item">
+    <h3>Event Type</h3>
+    <p>Hackathon & Game Jam</p>
+  </div>
+  <div class="info-item">
+    <h3>Host</h3>
+    <p>Amal Chamama High School (<a href="https://chamama.org" target="_blank">chamama.org</a>)</p>
+  </div>
+  <div class="info-item">
+    <h3>Date &amp; Time</h3>
+    <p>June 1, 2025 | 10:00 AM – 10:00 PM</p>
+  </div>
+  <div class="info-item">
+    <h3>Location</h3>
+    <p>Harash 9, Hod Hasharon</p>
+  </div>
+  <div class="info-item">
+    <h3>Theme</h3>
+    <p>Unknown – surprise challenge revealed at kickoff!</p>
+  </div>
+  <div class="info-item">
+    <h3>Rules</h3>
+    <p>Teams of up to 2-3. All coding begins at kickoff. Bring your ideas and enthusiasm.</p>
+  </div>
+</section>
+
+<section class="prizes" id="prizes">
+  <h2 style="text-align:center; color:var(--primary-color); margin-bottom:1rem;">Prizes</h2>
+  <p style="text-align:center; margin-bottom:2rem;">Everyone wins something fun!</p>
+  <div class="prizes-grid">
+    <div class="prize-card">
+      <h4>1st Place</h4>
+      <p>High-end gaming gear + Swag bag</p>
+    </div>
+    <div class="prize-card">
+      <h4>2nd Place</h4>
+      <p>Software licenses + Swag bag</p>
+    </div>
+    <div class="prize-card">
+      <h4>All Participants</h4>
+      <p>Exclusive T-shirt + Certificate</p>
+    </div>
+    <div class="prize-card">
+      <h4>Community Choice</h4>
+      <p>Spotlight & mentorship session</p>
+    </div>
+  </div>
+</section>
+
+<section class="location" id="location">
+  <div>
+    <h2 style="color:var(--primary-color); margin-bottom:1rem;">Where to Find Us</h2>
+    <p>Amal Chamama High School<br>Harash 9, Hod Hasharon</p>
+  </div>
+  <iframe src="https://maps.google.com/maps?q=Harash%209,%20Hod%20Hasharon&output=embed" allowfullscreen loading="lazy"></iframe>
+</section>
+
+<section id="register" style="text-align:center; padding:3rem 1rem; background: var(--surface-color);">
+  <a href="/register/index.html" class="btn">Register Your Team</a>
+</section>
+
+<footer role="contentinfo">
+  <p>© 2025 Amal Chamama Hackathon & Game Jam. All rights reserved.</p>
+  <p>Contact: <a href="mailto:info@chamama.org">info@chamama.org</a></p>
+</footer>
+
+<script>
+  document.getElementById('menu-btn').addEventListener('click', () => {
+    document.getElementById('main-nav').classList.toggle('nav-open');
+  });
+</script>
+</body>
+</html>
