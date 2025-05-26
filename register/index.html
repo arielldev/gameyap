@@ -2,205 +2,339 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amal Chamama Hackathon & Game Jam - Registration</title>
-  <!-- Replace 'raw.png' and 'circuit-bg.jpg' with your actual assets -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amal Chamama Hackathon &amp; Game Jam - Registration</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #0a0a0a;
-      --primary-color: #00baff;
-      --text-color: #f0f0f0;
-      --surface-color: #1a1a1a;
+      --bg: #0a0a0a;
+      --surface: #1a1a1a;
+      --primary: #00baff;
+      --accent: #4facfe;
+      --text: #f0f0f0;
+      --error: #f44336;
+      --radius: 8px;
       --transition: 0.3s ease;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Orbitron', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    #bg-canvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
     }
     header {
       background: rgba(0,0,0,0.8);
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      backdrop-filter: blur(10px);
+      position: fixed; top: 0; left: 0; width: 100%;
+      z-index: 1000; backdrop-filter: blur(10px);
     }
     .nav-container {
       max-width: 1200px; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1rem; position: relative;
     }
-    .logo img { height: 50px; }
-
-    /* Hamburger button */
+    .logo img { height: 40px; }
     .menu-toggle {
-      display: none;
-      background: none; border: none; cursor: pointer;
-      position: absolute; top: 1rem; right: 1rem;
-      padding: 0; margin: 0;
+      display: none; background: none; border: none; cursor: pointer;
+      position: absolute; top: 50%; right: 1rem;
+      transform: translateY(-50%);
     }
     .menu-toggle span {
       display: block; width: 25px; height: 3px;
-      margin: 5px; background: var(--text-color);
+      margin: 5px 0; background: var(--text);
       transition: transform var(--transition);
     }
-
-    .nav-links {
-      list-style: none; display: flex; gap: 1rem;
-      transition: max-height 0.3s ease;
-    }
+    .nav-links { list-style: none; display: flex; gap: 1rem; }
     .nav-links a {
-      color: var(--text-color); text-decoration: none;
-      font-weight: 500; padding: 0.5rem; position: relative;
+      color: var(--text); text-decoration: none;
+      font-weight: 500; padding: .5rem; position: relative;
     }
     .nav-links a::after {
-      content: ""; position: absolute; left: 0; bottom: 0;
-      width: 0; height: 2px; background: var(--primary-color);
+      content: ''; position: absolute; left: 0; bottom: 0;
+      width: 0; height: 2px; background: var(--primary);
       transition: width var(--transition);
     }
     .nav-links a:hover::after { width: 100%; }
-
-    @media (max-width: 768px) {
+    @media(max-width:768px) {
       .menu-toggle { display: block; }
       .nav-links {
         position: absolute; top: 100%; left: 0; right: 0;
-        background: var(--surface-color);
+        background: var(--surface);
         flex-direction: column; overflow: hidden; max-height: 0;
+        transition: max-height var(--transition);
       }
-      .nav-container.nav-open .nav-links { max-height: 300px; }
-      .nav-links li { text-align: center; padding: 0.75rem 0; }
+      .nav-open .nav-links { max-height: 300px; }
+      .nav-links li { text-align: center; padding: .75rem 0; }
     }
-
-    .container {
-      padding: 120px 1rem 60px; max-width: 600px; margin: 0 auto;
+    main {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      padding: 120px 1rem 60px; position: relative; z-index: 1;
+    }
+    .card {
+      background: var(--surface); border-radius: var(--radius);
+      padding: 2rem; max-width: 400px; width: 100%;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      display: grid; gap: 1.5rem;
     }
     h1 {
-      text-align: center; color: var(--primary-color);
-      margin-bottom: 1rem;
+      text-align: center; color: var(--primary);
+      font-size: 1.75rem; text-transform: uppercase;
+      letter-spacing: .05em;
     }
-    form {
-      background: var(--surface-color); padding: 2rem;
-      border-radius: 8px; display: grid; gap: 1rem;
+    label {
+      display: block; margin-bottom: .5rem;
+      font-weight: 500; letter-spacing: .03em;
     }
-    label { font-weight: 500; }
-    input {
-      width: 100%; padding: 0.8rem;
-      border: 1px solid #444; border-radius: 4px;
-      background: #111; color: var(--text-color);
+    input[type="text"], input[type="email"] {
+      width: 100%; background: #111; color: var(--text);
+      border: 1px solid #444; border-radius: var(--radius);
+      padding: .75rem; font-size: 1rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
     }
-    input:focus {
-      outline: none; border-color: var(--primary-color);
-      box-shadow: 0 0 5px var(--primary-color);
+    input[type="text"]:focus, input[type="email"]:focus {
+      outline: none; border-color: var(--primary);
+      box-shadow: 0 0 8px var(--primary);
     }
-    .btn-submit {
-      background: var(--primary-color); color: #000;
-      padding: 0.8rem; border: none; border-radius: 4px;
-      font-weight: bold; cursor: pointer;
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px #111 inset !important;
+      box-shadow: 0 0 0 1000px #111 inset !important;
+      -webkit-text-fill-color: var(--text) !important;
+    }
+    .error input[type="text"],
+    .error input[type="email"] {
+      border-color: var(--error) !important;
+    }
+    .error .error-msg { display: block; }
+    .error label { color: var(--error); }
+    .error label::before { border-color: var(--error) !important; }
+    .error-msg {
+      color: var(--error);
+      font-size: .85rem;
+      margin-top: .25rem;
+      display: none;
+    }
+    .checkbox-container {
+      display: flex; align-items: center; gap: .75rem; margin-top: 1rem;
+    }
+    .checkbox-container input { display: none; }
+    .checkbox-container label {
+      position: relative; padding-left: 24px;
+      cursor: pointer; user-select: none; font-size: .95rem;
+    }
+    .checkbox-container label::before {
+      content: '';
+      position: absolute; left: 0; top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      width: 16px; height: 16px;
+      border: 2px solid var(--primary);
+      border-radius: 2px;
       transition: background var(--transition);
     }
-    .btn-submit:hover { background: #0088cc; }
-
-    /* Modal */
+    .checkbox-container input:checked + label::before {
+      background: var(--primary);
+    }
+    .note {
+      font-size: .9rem; color: #ccc; margin-top: 1rem;
+      line-height: 1.4;
+    }
+    .btn-submit {
+      background: var(--primary); color: #000;
+      padding: .75rem; border: none;
+      border-radius: var(--radius);
+      font-weight: bold; cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+    .btn-submit:hover {
+      background: var(--accent); transform: translateY(-2px);
+    }
     .modal {
-      position: fixed; inset: 0; display: flex;
-      align-items: center; justify-content: center;
-      background: rgba(0,0,0,0.7); visibility: hidden;
-      opacity: 0; transition: opacity var(--transition);
+      position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+      display: flex; align-items: center; justify-content: center;
+      visibility: hidden; opacity: 0;
+      transition: opacity var(--transition), visibility var(--transition);
+      z-index: 2000;
     }
     .modal.show { visibility: visible; opacity: 1; }
     .modal-content {
-      background: var(--surface-color); padding: 2rem;
-      border-radius: 8px; text-align: center; max-width: 400px;
+      position: relative;
+      background: rgba(26,26,26,0.95);
+      border: 1px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      max-width: 360px;
+      box-shadow: 0 0 20px var(--accent);
+      animation: popIn 0.4s ease-out;
     }
-    .modal-content h2 { margin-bottom: 1rem; color: var(--primary-color); }
+    @keyframes popIn {
+      from { transform: scale(0.8) rotateX(15deg); opacity: 0; }
+      to   { transform: scale(1) rotateX(0);      opacity: 1; }
+    }
+    .modal-content::before, .modal-content::after {
+      content: ''; position: absolute; width: 24px; height: 24px;
+      border: 2px solid var(--accent);
+    }
+    .modal-content::before {
+      top: 0; left: 0; border-right: none; border-bottom: none;
+    }
+    .modal-content::after {
+      bottom: 0; right: 0; border-left: none; border-top: none;
+    }
+    .modal-content svg {
+      width: 2rem; height: 2rem; fill: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .modal-content h2 {
+      margin-bottom: .5rem; color: var(--primary);
+      font-size: 1.5rem; text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .modal-content p {
+      margin-bottom: 1rem; color: #ccc;
+      line-height: 1.4;
+    }
     .close-btn {
-      background: none; border: 2px solid var(--primary-color);
-      padding: 0.5rem 1rem; color: var(--primary-color);
-      border-radius: 4px; cursor: pointer;
-      transition: background var(--transition);
+      background: none; border: 2px solid var(--primary);
+      color: var(--primary); padding: .5rem 1rem;
+      border-radius: var(--radius); cursor: pointer;
+      transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+      letter-spacing: .05em; text-transform: uppercase;
     }
-    .close-btn:hover { background: var(--primary-color); color: #000; }
+    .close-btn:hover {
+      background: var(--primary); color: #000;
+      box-shadow: 0 0 10px var(--accent);
+    }
   </style>
 </head>
 <body>
-
-<header role="banner">
-  <div class="nav-container" id="main-nav">
-    <a href="index.html" class="logo"><img src="/images/raw.png" alt="Logo"></a>
-    <button class="menu-toggle" id="menu-btn" aria-label="Toggle navigation menu">
-      <span></span><span></span><span></span>
-    </button>
-    <nav aria-label="Main navigation">
+  <canvas id="bg-canvas"></canvas>
+  <header>
+    <div class="nav-container" id="main-nav">
+      <a href="index.html" class="logo"><img src="/images/logo.webp" alt="Logo"></a>
+      <button class="menu-toggle" id="menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
       <ul class="nav-links">
-        <li><a href="/index.html#home">Home</a></li>
-        <li><a href="/index.html#about">About</a></li>
-        <li><a href="/index.html#prizes">Prizes</a></li>
-        <li><a href="/index.html#location">Location</a></li>
-        <li><a href="#" style="opacity:0.6; pointer-events:none;">Register</a></li>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#prizes">Awards</a></li>
+        <li><a href="index.html#location">Location</a></li>
       </ul>
-    </nav>
+    </div>
+  </header>
+  <main>
+    <form id="register-form" class="card" novalidate>
+      <h1>Register</h1>
+      <div id="field-name">
+        <label for="name">Your Full Name</label>
+        <input type="text" id="name" name="name" required placeholder="Jane Doe">
+        <div class="error-msg">Please enter your name.</div>
+      </div>
+      <div id="field-email">
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com">
+        <div class="error-msg">Please enter a valid email.</div>
+      </div>
+      <div id="field-volunteer">
+        <div class="checkbox-container">
+          <input type="checkbox" id="volunteer" name="volunteer">
+          <label for="volunteer">Volunteer Participation</label>
+        </div>
+        <div class="error-msg">You must agree to volunteer.</div>
+      </div>
+      <p class="note">Teams of up to 3 participants will be formed at the event. Team assignments are volunteer-based and negotiable.</p>
+      <button type="submit" class="btn-submit">
+        Register Me</button>
+    </form>
+  </main>
+  <div id="success-modal" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+
+      <h2>Registered!</h2>
+      <p>Thanks for signing up. We’ll assign you to a team and follow up via email.</p>
+      <button  id="close-modal" class="close-btn">Close</button>
+    </div>
   </div>
-</header>
-
-<main class="container" id="register">
-  <h1>Register Your Team</h1>
-  <form id="register-form" novalidate>
-    <div>
-      <label for="teamName">Team Name</label>
-      <input type="text" id="teamName" name="teamName" required minlength="3" placeholder="Enter team name">
-    </div>
-    <div>
-      <label for="leaderEmail">Team Leader Email</label>
-      <input type="email" id="leaderEmail" name="leaderEmail" required placeholder="you@example.com">
-    </div>
-    <div>
-      <label for="participant1">Participant 1</label>
-      <input type="text" id="participant1" name="participant1" required placeholder="Full name">
-    </div>
-    <div>
-      <label for="participant2">Participant 2</label>
-      <input type="text" id="participant2" name="participant2" required placeholder="Full name">
-    </div>
-    <div>
-      <label for="participant3">Participant 3 (optional)</label>
-      <input type="text" id="participant3" name="participant3" placeholder="Full name">
-    </div>
-    <button type="submit" class="btn-submit">Submit Registration</button>
-  </form>
-</main>
-
-<!-- Success Modal -->
-<div id="success-modal" class="modal" role="dialog" aria-modal="true">
-  <div class="modal-content">
-    <h2>Registration Submitted!</h2>
-    <p>Thanks for registering. We’ve sent a confirmation email to the team leader.</p>
-    <button id="close-modal" class="close-btn">Close</button>
-  </div>
-</div>
-
-<script>
-  document.getElementById('menu-btn').addEventListener('click', () => {
-    document.getElementById('main-nav').classList.toggle('nav-open');
-  });
-
-  document.addEventListener('DOMContentLoaded', () => {
+  <script>
+    const canvas = document.getElementById('bg-canvas'), ctx = canvas.getContext('2d');
+    let w, h, stars = [], count = 200;
+    function init() {
+      w = canvas.width = innerWidth;
+      h = canvas.height = innerHeight;
+      stars = [];
+      for (let i = 0; i < count; i++)
+        stars.push({ x: Math.random()*w, y: Math.random()*h, z: Math.random()*w });
+    }
+    function animate() {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, w, h);
+      for (let s of stars) {
+        s.z -= 2;
+        if (s.z <= 0) s.z = w;
+        let k = 500/s.z,
+            x = s.x*k + w/2 - (w/2)*k,
+            y = s.y*k + h/2 - (h/2)*k,
+            size = (1 - s.z/w)*3;
+        ctx.fillStyle = '#fff';
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, 2*Math.PI);
+        ctx.fill();
+      }
+      requestAnimationFrame(animate);
+    }
+    window.addEventListener('resize', init);
+    init();
+    animate();
+    document.getElementById('menu-btn').addEventListener('click', () =>
+      document.getElementById('main-nav').classList.toggle('nav-open')
+    );
     const form = document.getElementById('register-form');
-    const modal = document.getElementById('success-modal');
     form.addEventListener('submit', e => {
       e.preventDefault();
-      if (form.checkValidity()) {
-        modal.classList.add('show');
+      let valid = true;
+      ['name','email'].forEach(id => {
+        const field = document.getElementById('field-' + id);
+        const input = field.querySelector('input');
+        if (!input.checkValidity()) {
+          field.classList.add('error');
+          valid = false;
+        } else {
+          field.classList.remove('error');
+        }
+      });
+      const volField = document.getElementById('field-volunteer');
+      const volInput = document.getElementById('volunteer');
+      if (!volInput.checked) {
+        volField.classList.add('error');
+        valid = false;
       } else {
-        form.reportValidity();
+        volField.classList.remove('error');
       }
+      if (!valid) return;
+      document.getElementById('success-modal').classList.add('show');
     });
+    ['name','email'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () =>
+        document.getElementById('field-' + id).classList.remove('error')
+      );
+    });
+    document.getElementById('volunteer').addEventListener('change', () =>
+      document.getElementById('field-volunteer').classList.remove('error')
+    );
     document.getElementById('close-modal').addEventListener('click', () => {
-      modal.classList.remove('show');
+      document.getElementById('success-modal').classList.remove('show');
       form.reset();
     });
-  });
-</script>
-
+  </script>
 </body>
 </html>

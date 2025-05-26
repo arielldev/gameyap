@@ -7,7 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
     html{scroll-behavior:smooth}
-    :root{--bg-color:#0a0a0a;--surface-color:#1a1a1a;--primary-color:#00baff;--text-color:#f0f0f0;--transition:.3s ease}
+    :root {
+      --bg-color: #0a0a0a;
+      --surface-color: #1a1a1a;
+      --primary-color: #00baff;
+      --text-color: #f0f0f0;
+      --transition: .3s ease;
+    }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Orbitron',sans-serif;background:var(--bg-color);color:var(--text-color);line-height:1.6}
     header{background:rgba(0,0,0,.8);position:fixed;top:0;left:0;width:100%;z-index:1000;backdrop-filter:blur(10px)}
@@ -28,7 +34,7 @@
     .hero{position:relative;padding:160px 1rem 120px;text-align:center;background:url('circuit-bg.jpg')center/cover no-repeat}
     .hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.5)}
     .hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto}
-    .hero h1{font-size:3rem;margin-bottom:1rem;color:var(--primary-color);animation:fadeInDown 1s ease forwards}
+    .hero-title{font-size:3rem;margin-bottom:1rem;color:var(--primary-color);animation:fadeInDown 1s ease forwards}
     @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
     .hero p{font-size:1.2rem;margin-bottom:1.5rem}
     .hero-highlights{list-style:none;display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:2rem}
@@ -71,6 +77,11 @@
     .register-btn{position:fixed;bottom:2rem;right:2rem;background:var(--primary-color);color:#000;padding:1rem 1.5rem;border-radius:50px;font-weight:bold;box-shadow:0 4px 15px rgba(0,186,255,.4);z-index:1001;text-decoration:none;transition:transform var(--transition),box-shadow var(--transition);animation:pulse 2s infinite}
     .register-btn:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(0,186,255,.6)}
     @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+    @media(max-width:780px){
+      .hero{padding:100px 1rem 60px}
+      .hero-title{font-size:2.6rem}
+      .scroll-indicator{bottom:5px}
+    }
   </style>
 </head>
 <body>
@@ -88,14 +99,12 @@
   </header>
   <section class="hero" id="home">
     <div class="hero-content">
-      <h1>Amal Chamama<br>Hackathon &amp; Game Jam</h1>
+      <h1 class="hero-title">Amal Chamama<br>Hackathon &amp; Game Jam</h1>
       <p>Code, collaborate &amp; volunteer in our educational hackathon game jam!</p>
       <ul class="hero-highlights">
         <li>24-hour</li>
         <li>Newbies Friendly</li>
-        <li>Collaborations</li>
-                <li>AI-Learning Friendly</li>
-
+        <li>AI-Friendly Learning</li>
       </ul>
       <a href="#about" class="btn">Learn More</a>
     </div>
@@ -154,7 +163,7 @@
         </div>
         <div class="accordion-body">
           <p>Volunteer-driven fun</p>
-          <ul><li>Original code only</li><li>Fair play</li><li>AI OK—only to learn</li></ul>
+          <ul><li>Original code only</li><li>Fair play</li><li>AI OK—only to learn</li><li>Teams of 2–3 participants</li></ul>
         </div>
       </div>
       <div class="about-card">
@@ -193,48 +202,15 @@
   </footer>
   <a href="/register/index.html" class="register-btn">Register Now</a>
   <script>
-    document.getElementById('menu-btn').addEventListener('click', () =>
-      document.getElementById('main-nav').classList.toggle('nav-open')
-    )
-    document.querySelectorAll('.about-card').forEach(card => {
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('reveal')
-            io.unobserve(e.target)
-          }
-        })
-      }, { threshold: .2 })
-      io.observe(card)
-    })
-    document.querySelectorAll('.accordion-header').forEach(header => {
-      header.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-          header.parentElement.classList.toggle('open')
-        }
-      })
-    })
-    const canvas = document.getElementById('starfield'), ctx = canvas.getContext('2d')
-    let w, h, cx, cy, stars = [], focal, speed = 1.5
-    const count = 600
-    function initStarfield() {
-      w = canvas.width = canvas.offsetWidth
-      h = canvas.height = canvas.offsetHeight
-      cx = w/2; cy = h/2; focal = w
-      stars = []
-      for (let i = 0; i < count; i++) stars.push({ x: (Math.random()-.5)*w, y: (Math.random()-.5)*h, z: Math.random()*w })
-    }
-    function drawStarfield() {
-      ctx.fillStyle = '#000'; ctx.fillRect(0,0,w,h)
-      for (let s of stars) {
-        s.z -= speed; if (s.z <= 0) s.z = w
-        const k = focal/s.z, x = s.x*k + cx, y = s.y*k + cy, size = Math.max(0,(1-s.z/w)*3)
-        ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(x,y,size,0,2*Math.PI); ctx.fill()
-      }
-      requestAnimationFrame(drawStarfield)
-    }
-    window.addEventListener('resize', initStarfield)
-    initStarfield(); drawStarfield()
+    document.getElementById('menu-btn').addEventListener('click',()=>document.getElementById('main-nav').classList.toggle('nav-open'))
+    document.querySelectorAll('.about-card').forEach(card=>{const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('reveal');io.unobserve(e.target)}})},{threshold:.2});io.observe(card)})
+    document.querySelectorAll('.accordion-header').forEach(header=>{header.addEventListener('click',()=>{if(window.innerWidth<=768){header.parentElement.classList.toggle('open')}})})
+    const canvas=document.getElementById('starfield'),ctx=canvas.getContext('2d')
+    let w,h,cx,cy,stars=[],focal,speed=1.5
+    const count=600
+    function initStarfield(){w=canvas.width=canvas.offsetWidth;h=canvas.height=canvas.offsetHeight;cx=w/2;cy=h/2;focal=w;stars=[];for(let i=0;i<count;i++)stars.push({x:(Math.random()-.5)*w,y:(Math.random()-.5)*h,z:Math.random()*w})}
+    function drawStarfield(){ctx.fillStyle='#000';ctx.fillRect(0,0,w,h);for(let s of stars){s.z-=speed;if(s.z<=0)s.z=w;const k=focal/s.z,x=s.x*k+cx,y=s.y*k+cy,size=Math.max(0,(1-s.z/w)*3);ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(x,y,size,0,2*Math.PI);ctx.fill()}requestAnimationFrame(drawStarfield)}
+    window.addEventListener('resize',initStarfield);initStarfield();drawStarfield()
   </script>
 </body>
 </html>
