@@ -1,588 +1,845 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
- <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Amal Chamama Hackathon &amp; Game Jam</title>
-<meta name="description" content="Join the Amal Chamama 24-hour Hackathon & Game Jam! Code, collaborate, volunteer, and win prizes in our newbie-friendly event with AI-powered learning.">
-  <meta name="keywords" content="hackathon, game jam, coding, education, volunteer, AI, Amal Chamama, high school, Israel">
-  <link rel="canonical" href="https://gameyap-lfql.vercel.app/">
-
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://gameyap-lfql.vercel.app/">
-  <meta property="og:title"       content="Amal Chamama Hackathon & Game Jam">
-  <meta property="og:description" content="Join the Amal Chamama 24-hour Hackathon & Game Jam! Code, collaborate, volunteer, and win prizes in our newbie-friendly event with AI-powered learning.">
-  <meta property="og:image"       content="https://gameyap-lfql.vercel.app/images/logo.webp">
-  <meta property="og:image:alt"   content="Amal Chamama Hackathon & Game Jam Logo">
-  <meta property="og:site_name"   content="Amal Chamama Hackathon & Game Jam">
-  <meta property="og:locale"      content="he_IL">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>האקתון וגיימג'אם עמל חממה</title>
+  <meta name="description" content="הצטרפו לאקתון וגיימג'אם של עמל חממה בן 24 שעות! קוד, שיתוף פעולה, התנדבות ופרסים באירוע ידידותי למתחילים עם למידה תומכת בינה מלאכותית.">
+  <meta name="keywords" content="האקתון, גיימג'אם, קודינג, שיתוף פעולה, מתנדבים, בינה מלאכותית, עמל חממה, תיכון, ישראל">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gameyap-lfql.vercel.app/">
+  <meta property="og:title" content="האקתון וגיימג'אם עמל חממה">
+  <meta property="og:description" content="הצטרפו לאקתון וגיימג'אם של עמל חממה בן 24 שעות! קוד, שיתוף פעולה, התנדבות ופרסים באירוע ידידותי למתחילים עם למידה תומכת בינה מלאכותית.">
+  <meta property="og:image" content="https://gameyap-lfql.vercel.app/images/logo.webp">
+  <meta property="og:image:alt" content="לוגו האקתון וגיימג'אם עמל חממה">
+  <meta property="og:site_name" content="האקתון וגיימג'אם עמל חממה">
+  <meta property="og:locale" content="he_IL">
   <meta property="og:locale:alternate" content="en_US">
-
-  <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:url"         content="https://gameyap-lfql.vercel.app/">
-  <meta name="twitter:title"       content="Amal Chamama Hackathon & Game Jam">
-  <meta name="twitter:description" content="Join the Amal Chamama 24-hour Hackathon & Game Jam! Code, collaborate, volunteer, and win prizes in our newbie-friendly event with AI-powered learning.">
-  <meta name="twitter:image"       content="https://gameyap-lfql.vercel.app/images/logo.webp">
-  <meta name="twitter:creator"     content="@arielelkaslasi">
-
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://gameyap-lfql.vercel.app/">
+  <meta name="twitter:title" content="האקתון וגיימג'אם עמל חממה">
+  <meta name="twitter:description" content="הצטרפו לאקתון וגיימג'אם של עמל חממה בן 24 שעות! קוד, שיתוף פעולה, התנדבות ופרסים באירוע ידידותי למתחילים עם למידה תומכת בינה מלאכותית.">
+  <meta name="twitter:image" content="https://gameyap-lfql.vercel.app/images/logo.webp">
+  <meta name="twitter:creator" content="@arielelkaslasi">
   <meta name="theme-color" content="#00baff">
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    html{scroll-behavior:smooth}
-    :root{
-      --bg-color:#0a0a0a;
-      --surface-color:#1a1a1a;
-      --primary-color:#00baff;
-      --text-color:#f0f0f0;
-      --transition:.3s ease
+    html {
+      scroll-behavior: smooth;
+      direction: rtl;
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:'Orbitron',sans-serif;
-      background:var(--bg-color);
-      color:var(--text-color);
-      line-height:1.6
+    :root {
+      --bg-color: #0a0a0a;
+      --surface-color: #1a1a1a;
+      --primary-color: #00baff;
+      --text-color: #f0f0f0;
+      --transition: .3s ease;
     }
-    header{
-      background:rgba(0,0,0,.8);
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      z-index:1000;
-      backdrop-filter:blur(10px)
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    .nav-container{
-      max-width:1200px;
-      margin:0 auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:1rem;
-      position:relative
+    body {
+      font-family: 'Assistant', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
     }
-    .logo img{height:50px}
-    .menu-toggle{display:none;background:none;border:none;cursor:pointer}
-    .menu-toggle span{
-      display:block;
-      width:25px;
-      height:3px;
-      margin:5px 0;
-      background:var(--text-color);
-      transition:transform var(--transition)
+
+    /* Header & Nav */
+    header {
+      background: rgba(0,0,0,.8);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
     }
-    .nav-links{
-      list-style:none;
-      display:flex;
-      gap:1rem;
-      transition:max-height var(--transition)
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
     }
-    .nav-links a{
-      color:var(--text-color);
-      text-decoration:none;
-      font-weight:500;
-      padding:.5rem;
-      position:relative
+    .logo img {
+      height: 50px;
     }
-    .nav-links a::after{
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:0;
-      width:0;
-      height:2px;
-      background:var(--primary-color);
-      transition:width var(--transition)
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
     }
-    .nav-links a:hover::after{width:100%}
-    @media(max-width:768px){
-      .menu-toggle{
-        display:block;
-        position:absolute;
-        top:50%;
-        right:1rem;
-        transform:translateY(-50%)
+    .menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px 0;
+      background: var(--text-color);
+      transition: transform var(--transition);
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      padding: .5rem;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    @media(max-width: 768px) {
+      .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
       }
-      .nav-links{
-        position:absolute;
-        top:100%;
-        left:0;
-        right:0;
-        background:var(--surface-color);
-        flex-direction:column;
-        overflow:hidden;
-        max-height:0
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--surface-color);
+        flex-direction: column;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height var(--transition);
       }
-      .nav-open .nav-links{max-height:300px}
-      .nav-links li{text-align:center;padding:.75rem 0}
+      .nav-open .nav-links { max-height: 300px; }
+      .nav-links li { text-align: center; padding: .75rem 0; }
     }
-    .hero{
-      position:relative;
-      padding:160px 1rem 120px;
-      text-align:center;
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 160px 1rem 120px;
+      text-align: center;
     }
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:rgba(0,0,0,.5)
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.5);
     }
-    .hero-content{
-      position:relative;
-      z-index:1;
-      max-width:800px;
-      margin:0 auto
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
     }
-    .hero-title{
-      font-size:3rem;
-      margin-bottom:1rem;
-      color:var(--primary-color);
-      animation:fadeInDown 1s ease forwards
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      animation: fadeInDown 1s ease forwards;
     }
-    @keyframes fadeInDown{
-      from{opacity:0;transform:translateY(-20px)}
-      to{opacity:1;transform:translateY(0)}
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    .hero p{
-      font-size:1.2rem;
-      margin-bottom:1.5rem
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
     }
-    .hero-highlights{
-      list-style:none;
-      display:flex;
-      flex-wrap:wrap;
-      gap:1rem;
-      justify-content:center;
-      margin-bottom:2rem
+    .hero-highlights {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
     }
-    .hero-highlights li{
-      background:rgba(0,186,255,.1);
-      padding:.5rem 1rem;
-      border-radius:4px;
-      font-size:.95rem
+    .hero-highlights li {
+      background: rgba(0,186,255,.1);
+      padding: .5rem 1rem;
+      border-radius: 4px;
+      font-size: .95rem;
     }
-    .btn{
-      background:var(--primary-color);
-      color:#000;
-      padding:.8rem 2rem;
-      border-radius:4px;
-      text-decoration:none;
-      font-weight:bold;
-      transition:background var(--transition)
+    .btn {
+      background: var(--primary-color);
+      color: #000;
+      padding: .8rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background var(--transition);
     }
-    .btn:hover{background:#0088cc}
-    .scroll-indicator{
-      position:absolute;
-      bottom:20px;
-      left:50%;
-      transform:translateX(-50%);
-      z-index:1
+    .btn:hover { background: #0088cc; }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
     }
-    .scroll-indicator span{
-      font-size:2rem;
-      color:var(--text-color);
-      display:block;
-      animation:arrowBounce 1.5s infinite
+    .scroll-indicator span {
+      font-size: 2rem;
+      color: var(--text-color);
+      display: block;
+      animation: arrowBounce 1.5s infinite;
     }
-    @keyframes arrowBounce{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(10px)}
+    @keyframes arrowBounce {
+      0%,100% { transform: translateY(0) }
+      50%     { transform: translateY(10px) }
     }
-    .about{
-      background:var(--surface-color);
-      padding:120px 1rem 80px
+
+    /* What Is Section */
+    .what-is {
+      padding: 100px 1rem;
+      background: var(--bg-color);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .about-inner{
-      max-width:1200px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:2rem
+    .what-is h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
     }
-    .about-card{
-      background:rgba(255,255,255,0.05);
-      backdrop-filter:blur(10px);
-      border-radius:12px;
-      padding:2rem 1.5rem;
-      text-align:center;
-      transition:transform 0.3s var(--transition),box-shadow 0.3s var(--transition);
-      cursor:pointer
+    .what-is-inner {
+      max-width: 800px;
+      margin: 0 auto;
     }
-    .about-card:hover,.about-card:focus-within{
-      transform:translateY(-8px) scale(1.02);
-      box-shadow:0 8px 20px rgba(0,0,0,0.5)
+    .what-item {
+      margin-bottom: 3rem;
+      text-align: right;
     }
-    .card-icon{
-      font-size:2.5rem;
-      margin-bottom:1rem;
-      color:var(--primary-color);
-      animation:popIn 0.5s ease forwards
+    .what-item h3 {
+      font-size: 1.8rem;
+      margin-bottom: .5rem;
     }
-    @keyframes popIn{
-      from{opacity:0;transform:scale(0.5)}
-      to{opacity:1;transform:scale(1)}
+    .what-item hr {
+      border: 0;
+      height: 3px;
+      width: 60px;
+      background: var(--primary-color);
+      border-radius: 2px;
+      margin: .5rem 0 1rem 0;
+      float: right;
     }
-    .card-title{
-      font-size:1.3rem;
-      margin-bottom:.5rem;
-      color:var(--text-color);
-      font-weight:600
+    .what-item p {
+      clear: both;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 700px;
     }
-    .card-desc{
-      font-size:1rem;
-      color:#ccc;
-      margin-bottom:1rem
+    @media(max-width: 768px) {
+      .what-item hr { float: right; margin: .5rem auto 1rem; }
     }
-    .card-list{
-      list-style:none;
-      padding:0;
-      margin:0;
-      color:#aaa
+
+    /* About Section */
+    .about {
+      background: var(--surface-color);
+      padding: 120px 1rem 80px;
     }
-    .card-list li{
-      margin-bottom:.4rem;
-      font-size:.95rem
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+      gap: 2rem;
     }
-    @media(max-width:768px){
-      .about-inner{grid-template-columns:1fr}
+    .about-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform .3s var(--transition), box-shadow .3s var(--transition);
+      cursor: pointer;
     }
-    .starfield-canvas{
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      z-index:0
+    .about-card:hover, .about-card:focus-within {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     }
-    .awards{
-      background:var(--surface-color);
-      padding:120px 1rem 80px;
-      position:relative
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      animation: popIn 0.5s ease forwards;
     }
-    .awards-content{
-      position:relative;
-      z-index:1;
-      max-width:1200px;
-      margin:0 auto;
-      text-align:center
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.5) }
+      to   { opacity: 1; transform: scale(1) }
     }
-    .wins{
-      font-size:4rem;
-      display:inline-block;
-      background:linear-gradient(270deg,var(--primary-color),#4facfe,#00f2fe);
-      background-size:200% 200%;
-      background-clip:text;
-      -webkit-text-fill-color:transparent;
-      animation:gradientBG 5s ease infinite
+    .card-title {
+      font-size: 1.3rem;
+      margin-bottom: .5rem;
+      color: var(--text-color);
+      font-weight: 600;
     }
-    @keyframes gradientBG{
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
+    .card-desc {
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 1rem;
     }
-    .prizes-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:1.5rem;
-      margin-top:2rem
+    .card-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: #aaa;
     }
-    .prize-card{
-      background:rgba(255,255,255,0.05);
-      backdrop-filter:blur(10px);
-      border-radius:12px;
-      padding:2rem 1.5rem;
-      text-align:center;
-      transition:transform 0.3s var(--transition),box-shadow 0.3s var(--transition);
-      cursor:default
+    .card-list li {
+      margin-bottom: .4rem;
+      font-size: .95rem;
     }
-    .prize-card:hover,.prize-card:focus-within{
-      transform:translateY(-8px) scale(1.02);
-      box-shadow:0 8px 20px rgba(0,0,0,0.5)
+
+    /* Awards Section */
+    .starfield-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
     }
-    .prize-icon{
-      font-size:2.5rem;
-      margin-bottom:1rem;
-      color:var(--primary-color);
-      animation:popIn 0.5s ease forwards
+    .awards {
+      background: var(--surface-color);
+      padding: 120px 1rem 80px;
+      position: relative;
     }
-    .prize-card h4{
-      font-size:1.5rem;
-      margin-bottom:.5rem;
-      color:var(--primary-color);
-      font-weight:600
+    .awards-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
     }
-    .prize-card p{
-      font-size:1rem;
-      color:#ccc;
-      line-height:1.4
+    .wins {
+      font-size: 4rem;
+      display: inline-block;
+      background: linear-gradient(270deg, var(--primary-color), #4facfe, #00f2fe);
+      background-size: 200% 200%;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientBG 5s ease infinite;
     }
-    @media(max-width:768px){
-      .prizes-grid{grid-template-columns:1fr}
+    @keyframes gradientBG {
+      0%   { background-position:0% 50% }
+      50%  { background-position:100% 50% }
+      100% { background-position:0% 50% }
     }
-    .location{
-      background:var(--surface-color);
-      padding:120px 1rem 80px
+    .prizes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
-    .location .inner{
-      max-width:1200px;
-      margin:0 auto;
-      display:flex;
-      gap:2rem;
-      align-items:center
+    .prize-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform .3s var(--transition), box-shadow .3s var(--transition);
+      cursor: default;
     }
-    .location h2{
-      font-size:2.5rem;
-      margin-bottom:1rem;
-      color:var(--text-color)
+    .prize-card:hover, .prize-card:focus-within {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     }
-    .location-text{
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      gap:1rem
+    .prize-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      animation: popIn 0.5s ease forwards;
     }
-    .location-text p{
-      font-size:1rem;
-      color:#ccc;
-      line-height:1.5
+    .prize-card h4 {
+      font-size: 1.5rem;
+      margin-bottom: .5rem;
+      color: var(--primary-color);
+      font-weight: 600;
     }
-    .location-text .btn{
-      align-self:flex-start
+    .prize-card p {
+      font-size: 1rem;
+      color: #ccc;
+      line-height: 1.4;
     }
-    .map-wrapper{
-      flex:1;
-      position:relative;
-      width:100%;
-      padding-bottom:56.25%;
-      border-radius:8px;
-      overflow:hidden
+
+    /* Location Section */
+    .location {
+      background: var(--surface-color);
+      padding: 120px 1rem 80px;
     }
-    .map-wrapper iframe{
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      border:0
+    .location .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
     }
-    @media(max-width:768px){
-      .location .inner{flex-direction:column}
+    .location h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
     }
-    footer{
-      background:var(--surface-color);
-      text-align:center;
-      padding:2rem 1rem
+    .location-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
-    footer a{color:var(--primary-color)}
-    .register-btn{
-      position:fixed;
-      bottom:2rem;
-      right:2rem;
-      background:var(--primary-color);
-      color:#000;
-      padding:1rem 1.5rem;
-      border-radius:50px;
-      font-weight:bold;
-      box-shadow:0 4px 15px rgba(0,186,255,0.4);
-      z-index:1001;
-      text-decoration:none;
-      transition:transform var(--transition),box-shadow var(--transition);
-      animation:pulse 2s infinite
+    .location-text p {
+      font-size: 1rem;
+      color: #ccc;
+      line-height: 1.5;
     }
-    @keyframes pulse{
-      0%,100%{transform:scale(1)}
-      50%{transform:scale(1.1)}
+    .location-text .btn {
+      align-self: flex-start;
     }
-    @media(max-width:780px){
-      .hero{padding:100px 1rem 60px}
-      .hero-title{font-size:2.6rem}
-      .scroll-indicator{bottom:5px}
+    .map-wrapper {
+      flex: 1;
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .map-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Footer & Register Button */
+    footer {
+      background: var(--surface-color);
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    footer a {
+      color: var(--primary-color);
+    }
+    .register-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--primary-color);
+      color: #000;
+      padding: 1rem 1.5rem;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0,186,255,0.4);
+      z-index: 1001;
+      text-decoration: none;
+      transition: transform var(--transition), box-shadow var(--transition);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1) }
+      50%     { transform: scale(1.1) }
+    }
+
+    /* Responsive Adjustments */
+    @media(max-width: 780px) {
+      .hero { padding: 100px 1rem 60px }
+      .hero-title { font-size: 2.6rem }
+      .scroll-indicator { bottom: 5px }
+    }
+    /* From Uiverse.io by csemszepp */
+    @keyframes animate {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+      100% {
+        filter: hue-rotate(360deg);
+      }
+    }
+    .cube-out {
+      position: absolute;
+      top: 90%;
+      left: 20%;
+    }
+    .container {
+      position: relative;
+      top: -80px;
+      transform: skewY(-20deg);
+      animation: animate 5s linear infinite;
+    }
+    .container .cube {
+      position: relative;
+      z-index: 2;
+    }
+    .container .cube:nth-child(2) {
+      z-index: 1;
+      translate: -60px -60px;
+    }
+    .container .cube:nth-child(3) {
+      z-index: 3;
+      translate: 60px 60px;
+    }
+    .container .cube div {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      translate: calc(-70px * var(--x)) calc(-60px * var(--y));
+    }
+    .container .cube span {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: #dcdcdc;
+      z-index: calc(1 * var(--i));
+      transition: 1.5s;
+    }
+
+    @media(max-width: 1200px) {
+      .cube-out {
+        top: 90%;
+        left: 10%;
+      }
+     
+      .container .cube span {
+        width: 40px;
+        height: 40px;
+      }
+    }
+       @media(max-width: 900px) {
+      .cube-out {
+        top: 99%;
+        left: 5%;
+      }
+     
+      .container .cube span {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    .container .cube span:hover {
+      transition: 0s;
+      background: #ef4149;
+      filter: drop-shadow(0 0 30px #ef4149);
+    }
+    .container .cube span:hover:before,
+    .container .cube span:hover:after {
+      transition: 0s;
+      background: #ef4149;
+    }
+    .container .cube span:before {
+      content: "";
+      position: absolute;
+      left: -40px;
+      width: 40px;
+      height: 100%;
+      background: #fff;
+      transform-origin: right;
+      transform: skewY(45deg);
+      transition: 1.5s;
+    }
+    .container .cube span:after {
+      content: "";
+      position: absolute;
+      top: -40px;
+      left: 0px;
+      width: 100%;
+      height: 40px;
+      background: #f2f2f2;
+      transform-origin: bottom;
+      transform: skewX(45deg);
+      transition: 1.5s;
     }
   </style>
 </head>
 <body>
-  <header>
+
+  <header dir="ltr">
     <div class="nav-container" id="main-nav">
-      <a href="#home" class="logo"><img src="/images/logo.webp" alt="Logo"></a>
+      <a href="#home" class="logo"><img src="/images/logo.webp" alt="לוגו"></a>
       <button class="menu-toggle" id="menu-btn"><span></span><span></span><span></span></button>
-      <nav><ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#prizes">Awards</a></li>
-        <li><a href="#location">Location</a></li>
-      </ul></nav>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home">בית</a></li>
+          <li><a href="#about">אודות</a></li>
+          <li><a href="#prizes">פרסים</a></li>
+          <li><a href="#location">מיקום</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
+
   <section class="hero" id="home">
     <div class="hero-content">
-      <h1 class="hero-title">Amal Chamama<br>Hackathon &amp; Game Jam</h1>
-      <p>Code, collaborate &amp; volunteer in our educational hackathon game jam!</p>
+      <h1 class="hero-title">האקתון וגיימג'אם עמל חממה<br>24 שעות של קוד, יצירתיות ואתגר</h1>
+      <p>קוד, שת"פ והתנדבות באירוע חינוכי של האקתון וגיימג'אם!</p>
       <ul class="hero-highlights">
-        <li>24-hour</li>
-        <li>Newbies Friendly</li>
-        <li>AI-Friendly Learning</li>
+        <li>24 שעות</li>
+        <li>מתאים למתחילים</li>
+        <li>למידה תומכת עם בינה מלאכותית</li>
       </ul>
-      <a href="#about" class="btn">Learn More</a>
+      <a href="#what-is" class="btn">מה זה?</a>
     </div>
     <div class="scroll-indicator"><span>↓</span></div>
   </section>
+
+  <section id="what-is" class="what-is">
+    <h2>מהו האקתון וגיימג'אם?</h2>
+    <div class="what-is-inner">
+      <div class="what-item">
+        <h3>מהו האקתון?</h3>
+        <hr>
+        <p>האקאתון הוא מרתון פיתוח בן 24 שעות שבו צוותים מעצבים, מפתחים ומשיקים פרויקטים חדשים, משתפים פעולה ולומדים טכנולוגיות חדשות יחד.</p>
+      </div>
+      <div class="what-item">
+        <h3>מהו גיימג'אם?</h3>
+        <hr>
+        <p>גיימג'אם הוא תחרות יצירתית של עיצוב ופיתוח משחקים, בה יוצרים משחקים מקוריים בפרק זמן מוגבל, מציגים אותם לקבל משוב ותמיכה מהמנטורים והקהילה.</p>
+      </div>
+      <div class="cube-out">
+        <div class="container">
+          <div class="cube">
+            <div style="--x:-1; --y:0;">
+              <span style="--i:3;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:1;"></span>
+            </div>
+            <div style="--x:0; --y:0;">
+              <span style="--i:3;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:1;"></span>
+            </div>
+            <div style="--x:1; --y:0;">
+              <span style="--i:3;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:1;"></span>
+            </div>
+          </div>
+          <div class="cube">
+            <div style="--x:-1; --y:0;">
+              <span style="--i:3;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:1;"></span>
+            </div>
+            <div style="--x:0; --y:0;">
+              <span style="--i:3;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:1;"></span>
+            </div>
+            <div style="--x:1; --y:0;">
+              <span style="--i:3;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:1;"></span>
+            </div>
+          </div>
+          <div class="cube">
+            <div style="--x:-1; --y:0;">
+              <span style="--i:3;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:1;"></span>
+            </div>
+            <div style="--x:0; --y:0;">
+              <span style="--i:3;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:1;"></span>
+            </div>
+            <div style="--x:1; --y:0;">
+              <span style="--i:3;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:1;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="about" class="about">
     <div class="about-inner">
       <div class="about-card">
         <div class="card-icon">💻</div>
-        <h3 class="card-title">Event Type</h3>
-        <p class="card-desc">Hackathon &amp; Game Jam</p>
+        <h3 class="card-title">סוג האירוע</h3>
+        <p class="card-desc">האקאטון וגיימג'אם</p>
         <ul class="card-list">
-          <li>24-hour sprint</li>
-          <li>Team collaboration</li>
+          <li>24-שעת ריצה</li>
+          <li>שיתוף פעולה קבוצתי</li>
         </ul>
       </div>
       <div class="about-card">
         <div class="card-icon">🏫</div>
-        <h3 class="card-title">Hosts</h3>
-        <p class="card-desc">Amal Chamama High School</p>
+        <h3 class="card-title">מארחים</h3>
+        <p class="card-desc">תיכון עמל חממה</p>
         <ul class="card-list">
-          <li>Volunteer driven</li>
-          <li>Community spirit</li>
+          <li>בהנחיית מתנדבים</li>
+          <li>רוח קהילתית</li>
         </ul>
       </div>
       <div class="about-card">
         <div class="card-icon">⏰</div>
-        <h3 class="card-title">Date &amp; Time</h3>
-        <p class="card-desc">June 6, 2025 | 9 AM–9 AM</p>
+        <h3 class="card-title">תאריך ושעה</h3>
+        <p class="card-desc">6 ביוני 2025 | 09:00–09:00</p>
         <ul class="card-list">
-          <li>Kickoff: 10 AM</li>
-          <li>Wrap-up: 10 PM</li>
+          <li>פתיחה: 10:00</li>
+          <li>סיום: 22:00</li>
         </ul>
       </div>
       <div class="about-card">
         <div class="card-icon">📍</div>
-        <h3 class="card-title">Location</h3>
-        <p class="card-desc">Harash 9, Hod Hasharon</p>
+        <h3 class="card-title">מיקום</h3>
+        <p class="card-desc">רחוב החרש 9, הוד השרון</p>
         <ul class="card-list">
-          <li>Amal Chamama High School</li>
+          <li>תיכון עמל חממה</li>
         </ul>
       </div>
       <div class="about-card">
         <div class="card-icon">🎯</div>
-        <h3 class="card-title">Theme</h3>
-        <p class="card-desc">Surprise Challenge</p>
+        <h3 class="card-title">נושא</h3>
+        <p class="card-desc">אתגר מפתיע</p>
         <ul class="card-list">
-          <li>Revealed live</li>
-          <li>Think quickly!</li>
+          <li>נחשף בשידור חי</li>
+          <li>חשבו מהר!</li>
         </ul>
       </div>
       <div class="about-card">
         <div class="card-icon">📜</div>
-        <h3 class="card-title">Rules</h3>
-        <p class="card-desc">Volunteer-driven fun</p>
+        <h3 class="card-title">חוקים</h3>
+        <p class="card-desc">כיף בהנחיית מתנדבים</p>
         <ul class="card-list">
-          <li>Original code only</li>
-          <li>Fair play</li>
-          <li>AI OK—tutor only</li>
-          <li>Teams of 2–3</li>
+          <li>רק קוד מקורי</li>
+          <li>משחק הוגן</li>
+          <li>בינה מלאכותית מותרת — למדריך בלבד</li>
+          <li>צוותים של 2–3</li>
         </ul>
       </div>
       <div class="about-card">
         <div class="card-icon">🤖</div>
-        <h3 class="card-title">AI Assistance</h3>
-        <p class="card-desc">Learn with AI</p>
+        <h3 class="card-title">סיוע בינה מלאכותית</h3>
+        <p class="card-desc">למדו עם AI</p>
         <ul class="card-list">
-          <li>Use AI for concepts</li>
-          <li>Code it yourself</li>
-          <li>Credit AI help</li>
+          <li>השתמשו בבינה מלאכותית לרעיונות</li>
+          <li>כתבו בעצמכם</li>
+          <li>תנו קרדיט לעזרה של AI</li>
         </ul>
       </div>
     </div>
   </section>
+
   <section id="prizes" class="awards">
     <canvas id="starfield" class="starfield-canvas"></canvas>
     <div class="awards-content">
-      <h2>Everyone <span class="wins">Wins</span></h2>
-      <div class="prizes-grid">
+      <h2 style="font-style: italic;">כולם <span class="wins">מנצחים</span></h2>
+      <div class="prizes-grid" dir="ltr">
         <div class="prize-card">
           <div class="prize-icon">🥇</div>
-          <h4>1st Place</h4>
-          <p>Certificate of Excellence</p>
+          <h4>מקום ראשון</h4>
+          <p>תעודת הצטיינות</p>
         </div>
         <div class="prize-card">
           <div class="prize-icon">🥈</div>
-          <h4>2nd Place</h4>
-          <p>Certificate of Merit</p>
+          <h4>מקום שני</h4>
+          <p>תעודת הוקרה</p>
         </div>
         <div class="prize-card">
           <div class="prize-icon">🎖️</div>
-          <h4>All Participants</h4>
-          <p>Participation Certificate</p>
+          <h4>כל המשתתפים</h4>
+          <p>תעודת השתתפות</p>
         </div>
         <div class="prize-card">
           <div class="prize-icon">🏆</div>
-          <h4>Community Choice</h4>
-          <p>Mentor Feedback</p>
+          <h4>בחירת הקהילה</h4>
+          <p>משוב מהמנטורים</p>
         </div>
       </div>
     </div>
   </section>
- <section id="location" class="location">
-  <div class="inner">
-    <div class="location-text">
-      <h2>Where to Find Us</h2>
-      <p>Amal Chamama High School<br>HaHarash St 9, Hod HaSharon</p>
-      <a href="https://www.google.com/maps/place/HaHarash+St+9,+Hod+HaSharon,+4524082/@32.1317452,34.8933,17z" class="btn" target="_blank">Get Directions</a>
+
+  <section id="location" class="location">
+    <div class="inner">
+      <div class="location-text">
+        <h2>איפה למצוא אותנו</h2>
+        <p>תיכון עמל חממה<br>רחוב החרש 9, הוד השרון</p>
+        <a href="https://www.google.com/maps/place/HaHarash+St+9,+Hod+HaSharon,+4524082/@32.1317452,34.8933,17z" class="btn" target="_blank">קבלו הוראות הגעה</a>
+      </div>
+      <div class="map-wrapper">
+        <iframe src="https://maps.google.com/maps?q=32.1317408,34.8981709&z=17&output=embed" loading="lazy"></iframe>
+      </div>
     </div>
-    <div class="map-wrapper">
-      <iframe
-        src="https://maps.google.com/maps?q=32.1317408,34.8981709&z=17&output=embed"
-        loading="lazy"
-      ></iframe>
-    </div>
-  </div>
-</section>
+  </section>
 
   <footer>
-    <p>© 2025 Amal Chamama Hackathon &amp; Game Jam. All rights reserved.</p>
-    <p>Contact: <a href="mailto:info@chamama.org">info@chamama.org</a></p>
+    <p>© 2025 האקתון וגיימג'אם עמל חממה. כל הזכויות שמורות.</p>
+    <p>יצירת קשר: <a href="mailto:info@chamama.org">info@chamama.org</a></p>
   </footer>
-  <a href="/register/index.html" class="register-btn">Register Now</a>
+
+  <a href="/register/index.html" class="register-btn">הרשמו עכשיו</a>
+
   <script>
-    document.getElementById('menu-btn').addEventListener('click',()=>document.getElementById('main-nav').classList.toggle('nav-open'))
-    const canvas=document.getElementById('starfield'),ctx=canvas.getContext('2d')
-    let w,h,cx,cy,stars=[],focal,speed=1.5
-    const count=600
-    function initStarfield(){
-      w=canvas.width=canvas.offsetWidth
-      h=canvas.height=canvas.offsetHeight
-      cx=w/2
-      cy=h/2
-      focal=w
-      stars=[]
-      for(let i=0;i<count;i++){
-        stars.push({x:(Math.random()-.5)*w,y:(Math.random()-.5)*h,z:Math.random()*w})
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('main-nav').classList.toggle('nav-open');
+    });
+
+    const canvas = document.getElementById('starfield'),
+          ctx = canvas.getContext('2d');
+    let w, h, cx, cy, stars = [], focal, speed = 1.5;
+    const count = 600;
+
+    function initStarfield() {
+      w = canvas.width = canvas.offsetWidth;
+      h = canvas.height = canvas.offsetHeight;
+      cx = w / 2;
+      cy = h / 2;
+      focal = w;
+      stars = [];
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          x: (Math.random() - 0.5) * w,
+          y: (Math.random() - 0.5) * h,
+          z: Math.random() * w
+        });
       }
     }
-    function drawStarfield(){
-      ctx.fillStyle='#000'
-      ctx.fillRect(0,0,w,h)
-      for(let s of stars){
-        s.z-=speed
-        if(s.z<=0)s.z=w
-        const k=focal/s.z
-        const x=s.x*k+cx
-        const y=s.y*k+cy
-        const size=Math.max(0,(1-s.z/w)*3)
-        ctx.fillStyle='#fff'
-        ctx.beginPath()
-        ctx.arc(x,y,size,0,2*Math.PI)
-        ctx.fill()
+
+    function drawStarfield() {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, w, h);
+      for (let s of stars) {
+        s.z -= speed;
+        if (s.z <= 0) s.z = w;
+        const k = focal / s.z;
+        const x = s.x * k + cx;
+        const y = s.y * k + cy;
+        const size = Math.max(0, (1 - s.z / w) * 3);
+        ctx.fillStyle = '#fff';
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, 2 * Math.PI);
+        ctx.fill();
       }
-      requestAnimationFrame(drawStarfield)
+      requestAnimationFrame(drawStarfield);
     }
-    window.addEventListener('resize',initStarfield)
-    initStarfield()
-    drawStarfield()
+
+    window.addEventListener('resize', initStarfield);
+    initStarfield();
+    drawStarfield();
   </script>
+
 </body>
 </html>
