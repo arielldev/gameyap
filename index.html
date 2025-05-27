@@ -7,76 +7,338 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
     html{scroll-behavior:smooth}
-    :root {
-      --bg-color: #0a0a0a;
-      --surface-color: #1a1a1a;
-      --primary-color: #00baff;
-      --text-color: #f0f0f0;
-      --transition: .3s ease;
+    :root{
+      --bg-color:#0a0a0a;
+      --surface-color:#1a1a1a;
+      --primary-color:#00baff;
+      --text-color:#f0f0f0;
+      --transition:.3s ease
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Orbitron',sans-serif;background:var(--bg-color);color:var(--text-color);line-height:1.6}
-    header{background:rgba(0,0,0,.8);position:fixed;top:0;left:0;width:100%;z-index:1000;backdrop-filter:blur(10px)}
-    .nav-container{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:1rem;position:relative}
+    body{
+      font-family:'Orbitron',sans-serif;
+      background:var(--bg-color);
+      color:var(--text-color);
+      line-height:1.6
+    }
+    header{
+      background:rgba(0,0,0,.8);
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      backdrop-filter:blur(10px)
+    }
+    .nav-container{
+      max-width:1200px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:1rem;
+      position:relative
+    }
     .logo img{height:50px}
     .menu-toggle{display:none;background:none;border:none;cursor:pointer}
-    .menu-toggle span{display:block;width:25px;height:3px;margin:5px 0;background:var(--text-color);transition:transform var(--transition)}
-    .nav-links{list-style:none;display:flex;gap:1rem;transition:max-height var(--transition)}
-    .nav-links a{color:var(--text-color);text-decoration:none;font-weight:500;padding:.5rem;position:relative}
-    .nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--primary-color);transition:width var(--transition)}
+    .menu-toggle span{
+      display:block;
+      width:25px;
+      height:3px;
+      margin:5px 0;
+      background:var(--text-color);
+      transition:transform var(--transition)
+    }
+    .nav-links{
+      list-style:none;
+      display:flex;
+      gap:1rem;
+      transition:max-height var(--transition)
+    }
+    .nav-links a{
+      color:var(--text-color);
+      text-decoration:none;
+      font-weight:500;
+      padding:.5rem;
+      position:relative
+    }
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:0;
+      height:2px;
+      background:var(--primary-color);
+      transition:width var(--transition)
+    }
     .nav-links a:hover::after{width:100%}
     @media(max-width:768px){
-      .menu-toggle{display:block;position:absolute;top:50%;right:1rem;transform:translateY(-50%)}
-      .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--surface-color);flex-direction:column;overflow:hidden;max-height:0}
+      .menu-toggle{
+        display:block;
+        position:absolute;
+        top:50%;
+        right:1rem;
+        transform:translateY(-50%)
+      }
+      .nav-links{
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        background:var(--surface-color);
+        flex-direction:column;
+        overflow:hidden;
+        max-height:0
+      }
       .nav-open .nav-links{max-height:300px}
       .nav-links li{text-align:center;padding:.75rem 0}
     }
-    .hero{position:relative;padding:160px 1rem 120px;text-align:center;background:url('circuit-bg.jpg')center/cover no-repeat}
-    .hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.5)}
-    .hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto}
-    .hero-title{font-size:3rem;margin-bottom:1rem;color:var(--primary-color);animation:fadeInDown 1s ease forwards}
-    @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
-    .hero p{font-size:1.2rem;margin-bottom:1.5rem}
-    .hero-highlights{list-style:none;display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:2rem}
-    .hero-highlights li{background:rgba(0,186,255,.1);padding:.5rem 1rem;border-radius:4px;font-size:.95rem}
-    .btn{background:var(--primary-color);color:#000;padding:.8rem 2rem;border-radius:4px;text-decoration:none;font-weight:bold;transition:background var(--transition)}
-    .btn:hover{background:#0088cc}
-    .scroll-indicator{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:1}
-    .scroll-indicator span{font-size:2rem;color:var(--text-color);display:block;animation:arrowBounce 1.5s infinite}
-    @keyframes arrowBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
-    .about,.awards,.location{background:var(--surface-color);padding:120px 1rem 80px;position:relative}
-    .about-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:2rem;justify-content:center}
-    .about-card{background:rgba(255,255,255,.05);backdrop-filter:blur(10px);border-radius:12px;width:300px;opacity:0;transform:translateY(20px);transition:all .6s ease;overflow:hidden}
-    .about-card.reveal{opacity:1;transform:translateY(0)}
-    .accordion-header{display:flex;justify-content:space-between;align-items:center;padding:1rem;cursor:pointer}
-    .accordion-header h3{margin:0;color:var(--primary-color)}
-    .accordion-header .arrow{transition:transform var(--transition);font-size:1.2rem;display:none}
-    .accordion-body{padding:0 1rem 1rem;display:block}
-    @media(max-width:768px){
-      .accordion-body{display:none}
-      .accordion-header .arrow{display:inline-block}
-      .about-card.open .accordion-body{display:block}
-      .about-card.open .arrow{transform:rotate(-180deg)}
+    .hero{
+      position:relative;
+      padding:160px 1rem 120px;
+      text-align:center;
+      background:url('circuit-bg.jpg')center/cover no-repeat
     }
-    .accordion-body ul{list-style:none;padding-left:0;margin-top:.5rem}
-    .accordion-body li{margin-bottom:.5rem}
-    @media(max-width:768px){.about-inner{flex-direction:column;align-items:center}.about-card{width:100%;max-width:400px}}
-    .starfield-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0}
-    .awards-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;text-align:center}
-    .awards-content h2{font-size:3rem;margin-bottom:1rem}
-    .wins{font-size:4rem;display:inline-block;background:linear-gradient(270deg,var(--primary-color),#4facfe,#00f2fe);background-size:200% 200%;background-clip:text;-webkit-text-fill-color:transparent;animation:gradientBG 5s ease infinite}
-    @keyframes gradientBG{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-    .prizes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:2rem}
-    .prize-card{background:rgba(255,255,255,.05);backdrop-filter:blur(5px);border:1px solid var(--primary-color);border-radius:12px;padding:2rem;transition:transform var(--transition)}
-    .prize-card:hover{transform:translateY(-10px)}
-    .prize-card h4{color:var(--primary-color);font-size:1.5rem;margin-bottom:.5rem}
-    .prize-card p{font-size:1rem;line-height:1.4}
-    .location iframe{width:100%;height:300px;border:none;border-radius:8px;margin-top:1rem}
-    footer{background:var(--surface-color);text-align:center;padding:2rem 1rem}
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,.5)
+    }
+    .hero-content{
+      position:relative;
+      z-index:1;
+      max-width:800px;
+      margin:0 auto
+    }
+    .hero-title{
+      font-size:3rem;
+      margin-bottom:1rem;
+      color:var(--primary-color);
+      animation:fadeInDown 1s ease forwards
+    }
+    @keyframes fadeInDown{
+      from{opacity:0;transform:translateY(-20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .hero p{
+      font-size:1.2rem;
+      margin-bottom:1.5rem
+    }
+    .hero-highlights{
+      list-style:none;
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem;
+      justify-content:center;
+      margin-bottom:2rem
+    }
+    .hero-highlights li{
+      background:rgba(0,186,255,.1);
+      padding:.5rem 1rem;
+      border-radius:4px;
+      font-size:.95rem
+    }
+    .btn{
+      background:var(--primary-color);
+      color:#000;
+      padding:.8rem 2rem;
+      border-radius:4px;
+      text-decoration:none;
+      font-weight:bold;
+      transition:background var(--transition)
+    }
+    .btn:hover{background:#0088cc}
+    .scroll-indicator{
+      position:absolute;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:1
+    }
+    .scroll-indicator span{
+      font-size:2rem;
+      color:var(--text-color);
+      display:block;
+      animation:arrowBounce 1.5s infinite
+    }
+    @keyframes arrowBounce{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(10px)}
+    }
+    .about{
+      background:var(--surface-color);
+      padding:120px 1rem 80px
+    }
+    .about-inner{
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:2rem
+    }
+    .about-card{
+      background:rgba(255,255,255,0.05);
+      backdrop-filter:blur(10px);
+      border-radius:12px;
+      padding:2rem 1.5rem;
+      text-align:center;
+      transition:transform 0.3s var(--transition),box-shadow 0.3s var(--transition);
+      cursor:pointer
+    }
+    .about-card:hover,.about-card:focus-within{
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:0 8px 20px rgba(0,0,0,0.5)
+    }
+    .card-icon{
+      font-size:2.5rem;
+      margin-bottom:1rem;
+      color:var(--primary-color);
+      animation:popIn 0.5s ease forwards
+    }
+    @keyframes popIn{
+      from{opacity:0;transform:scale(0.5)}
+      to{opacity:1;transform:scale(1)}
+    }
+    .card-title{
+      font-size:1.3rem;
+      margin-bottom:.5rem;
+      color:var(--text-color);
+      font-weight:600
+    }
+    .card-desc{
+      font-size:1rem;
+      color:#ccc;
+      margin-bottom:1rem
+    }
+    .card-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      color:#aaa
+    }
+    .card-list li{
+      margin-bottom:.4rem;
+      font-size:.95rem
+    }
+    @media(max-width:768px){
+      .about-inner{grid-template-columns:1fr}
+    }
+    .starfield-canvas{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      z-index:0
+    }
+    .awards{
+      background:var(--surface-color);
+      padding:120px 1rem 80px;
+      position:relative
+    }
+    .awards-content{
+      position:relative;
+      z-index:1;
+      max-width:1200px;
+      margin:0 auto;
+      text-align:center
+    }
+    .awards-content h2{
+      font-size:3rem;
+      margin-bottom:1rem
+    }
+    .wins{
+      font-size:4rem;
+      display:inline-block;
+      background:linear-gradient(270deg,var(--primary-color),#4facfe,#00f2fe);
+      background-size:200% 200%;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:gradientBG 5s ease infinite
+    }
+    @keyframes gradientBG{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+    .prizes-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:1.5rem;
+      margin-top:2rem
+    }
+    .prize-card{
+      background:rgba(255,255,255,0.05);
+      backdrop-filter:blur(10px);
+      border-radius:12px;
+      padding:2rem 1.5rem;
+      text-align:center;
+      transition:transform 0.3s var(--transition),box-shadow 0.3s var(--transition);
+      cursor:default
+    }
+    .prize-card:hover,.prize-card:focus-within{
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:0 8px 20px rgba(0,0,0,0.5)
+    }
+    .prize-icon{
+      font-size:2.5rem;
+      margin-bottom:1rem;
+      color:var(--primary-color);
+      animation:popIn 0.5s ease forwards
+    }
+    .prize-card h4{
+      font-size:1.5rem;
+      margin-bottom:.5rem;
+      color:var(--primary-color);
+      font-weight:600
+    }
+    .prize-card p{
+      font-size:1rem;
+      color:#ccc;
+      line-height:1.4
+    }
+    @media(max-width:768px){
+      .prizes-grid{grid-template-columns:1fr}
+    }
+    .location{
+      background:var(--surface-color);
+      padding:120px 1rem 80px;
+      position:relative
+    }
+    .location iframe{
+      width:100%;
+      height:300px;
+      border:none;
+      border-radius:8px;
+      margin-top:1rem
+    }
+    footer{
+      background:var(--surface-color);
+      text-align:center;
+      padding:2rem 1rem
+    }
     footer a{color:var(--primary-color)}
-    .register-btn{position:fixed;bottom:2rem;right:2rem;background:var(--primary-color);color:#000;padding:1rem 1.5rem;border-radius:50px;font-weight:bold;box-shadow:0 4px 15px rgba(0,186,255,.4);z-index:1001;text-decoration:none;transition:transform var(--transition),box-shadow var(--transition);animation:pulse 2s infinite}
-    .register-btn:hover{transform:scale(1.05);box-shadow:0 6px 20px rgba(0,186,255,.6)}
-    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+    .register-btn{
+      position:fixed;
+      bottom:2rem;
+      right:2rem;
+      background:var(--primary-color);
+      color:#000;
+      padding:1rem 1.5rem;
+      border-radius:50px;
+      font-weight:bold;
+      box-shadow:0 4px 15px rgba(0,186,255,0.4);
+      z-index:1001;
+      text-decoration:none;
+      transition:transform var(--transition),box-shadow var(--transition);
+      animation:pulse 2s infinite
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.1)}
+    }
     @media(max-width:780px){
       .hero{padding:100px 1rem 60px}
       .hero-title{font-size:2.6rem}
@@ -112,68 +374,70 @@
   </section>
   <section id="about" class="about">
     <div class="about-inner">
-      <div class="about-card open">
-        <div class="accordion-header">
-          <h3>Event Type</h3><span class="arrow">▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>Hackathon &amp; Game Jam</p>
-          <ul><li>24-hour coding sprint</li><li>Team collaboration</li></ul>
-        </div>
+      <div class="about-card">
+        <div class="card-icon">💻</div>
+        <h3 class="card-title">Event Type</h3>
+        <p class="card-desc">Hackathon &amp; Game Jam</p>
+        <ul class="card-list">
+          <li>24-hour sprint</li>
+          <li>Team collaboration</li>
+        </ul>
       </div>
       <div class="about-card">
-        <div class="accordion-header">
-          <h3>Hosts</h3><span class="arrow">▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>Amal Chamama High School</p>
-          <ul><li>Volunteerings</li></ul>
-        </div>
+        <div class="card-icon">🏫</div>
+        <h3 class="card-title">Hosts</h3>
+        <p class="card-desc">Amal Chamama High School</p>
+        <ul class="card-list">
+          <li>Volunteer driven</li>
+          <li>Community spirit</li>
+        </ul>
       </div>
       <div class="about-card">
-        <div class="accordion-header">
-          <h3>Date &amp; Time</h3><span class="arrow">▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>June 6, 2025 | 9 AM – 9 AM</p>
-          <ul><li>Kickoff at 10 AM</li><li>Wrap-up at 10 PM</li></ul>
-        </div>
+        <div class="card-icon">⏰</div>
+        <h3 class="card-title">Date &amp; Time</h3>
+        <p class="card-desc">June 6, 2025 | 9 AM–9 AM</p>
+        <ul class="card-list">
+          <li>Kickoff: 10 AM</li>
+          <li>Wrap-up: 10 PM</li>
+        </ul>
       </div>
       <div class="about-card">
-        <div class="accordion-header">
-          <h3>Location</h3><span class="arrow">▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>Harash 9, Hod Hasharon</p>
-          <ul><li>Amal Chamama High School</li></ul>
-        </div>
+        <div class="card-icon">📍</div>
+        <h3 class="card-title">Location</h3>
+        <p class="card-desc">Harash 9, Hod Hasharon</p>
+        <ul class="card-list">
+          <li>Amal Chamama High School</li>
+        </ul>
       </div>
       <div class="about-card">
-        <div class="accordion-header">
-          <h3>Theme</h3><span class="arrow">▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>Surprise Challenge</p>
-          <ul><li>Revealed live</li><li>Think quickly!</li></ul>
-        </div>
+        <div class="card-icon">🎯</div>
+        <h3 class="card-title">Theme</h3>
+        <p class="card-desc">Surprise Challenge</p>
+        <ul class="card-list">
+          <li>Revealed live</li>
+          <li>Think quickly!</li>
+        </ul>
       </div>
       <div class="about-card">
-        <div class="accordion-header">
-          <h3>Rules</h3><span class="arrow">▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>Volunteer-driven fun</p>
-          <ul><li>Original code only</li><li>Fair play</li><li>AI OK—only to learn</li><li>Teams of 2–3 participants</li></ul>
-        </div>
+        <div class="card-icon">📜</div>
+        <h3 class="card-title">Rules</h3>
+        <p class="card-desc">Volunteer-driven fun</p>
+        <ul class="card-list">
+          <li>Original code only</li>
+          <li>Fair play</li>
+          <li>AI OK—tutor only</li>
+          <li>Teams of 2–3</li>
+        </ul>
       </div>
       <div class="about-card">
-        <div class="accordion-header">
-          <h3>AI Assistance</h3><span class="arrow">▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>Newbies can use AI as a tutor.</p>
-          <ul><li>Use AI to understand concepts</li><li>Code yourself afterwards</li><li>Note when AI helped</li></ul>
-        </div>
+        <div class="card-icon">🤖</div>
+        <h3 class="card-title">AI Assistance</h3>
+        <p class="card-desc">Learn with AI</p>
+        <ul class="card-list">
+          <li>Use AI for concepts</li>
+          <li>Code it yourself</li>
+          <li>Credit AI help</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -182,17 +446,33 @@
     <div class="awards-content">
       <h2>Everyone <span class="wins">Wins</span></h2>
       <div class="prizes-grid">
-        <div class="prize-card"><h4>1st Place</h4><p>Certificate of Excellence</p></div>
-        <div class="prize-card"><h4>2nd Place</h4><p>Certificate of Merit</p></div>
-        <div class="prize-card"><h4>All Participants</h4><p>Participation Certificate</p></div>
-        <div class="prize-card"><h4>Community Choice</h4><p>Mentor Feedback Session</p></div>
+        <div class="prize-card">
+          <div class="prize-icon">🥇</div>
+          <h4>1st Place</h4>
+          <p>Certificate of Excellence</p>
+        </div>
+        <div class="prize-card">
+          <div class="prize-icon">🥈</div>
+          <h4>2nd Place</h4>
+          <p>Certificate of Merit</p>
+        </div>
+        <div class="prize-card">
+          <div class="prize-icon">🎖️</div>
+          <h4>All Participants</h4>
+          <p>Participation Certificate</p>
+        </div>
+        <div class="prize-card">
+          <div class="prize-icon">🏆</div>
+          <h4>Community Choice</h4>
+          <p>Mentor Feedback</p>
+        </div>
       </div>
     </div>
   </section>
   <section id="location" class="location">
     <div style="max-width:1200px;margin:0 auto;text-align:center">
       <h1 style="color:var(--primary-color);margin-bottom:1rem">Where to Find Us</h1>
-      <p style="margin-bottom:1rem;">Amal Chamama High School<br>Harash 9, Hod Hasharon</p>
+      <p style="margin-bottom:1rem">Amal Chamama High School<br>Harash 9, Hod Hasharon</p>
       <iframe src="https://maps.google.com/maps?q=Harash%209,%20Hod%20Hasharon&output=embed" loading="lazy"></iframe>
     </div>
   </section>
@@ -203,14 +483,40 @@
   <a href="/register/index.html" class="register-btn">Register Now</a>
   <script>
     document.getElementById('menu-btn').addEventListener('click',()=>document.getElementById('main-nav').classList.toggle('nav-open'))
-    document.querySelectorAll('.about-card').forEach(card=>{const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('reveal');io.unobserve(e.target)}})},{threshold:.2});io.observe(card)})
-    document.querySelectorAll('.accordion-header').forEach(header=>{header.addEventListener('click',()=>{if(window.innerWidth<=768){header.parentElement.classList.toggle('open')}})})
     const canvas=document.getElementById('starfield'),ctx=canvas.getContext('2d')
     let w,h,cx,cy,stars=[],focal,speed=1.5
     const count=600
-    function initStarfield(){w=canvas.width=canvas.offsetWidth;h=canvas.height=canvas.offsetHeight;cx=w/2;cy=h/2;focal=w;stars=[];for(let i=0;i<count;i++)stars.push({x:(Math.random()-.5)*w,y:(Math.random()-.5)*h,z:Math.random()*w})}
-    function drawStarfield(){ctx.fillStyle='#000';ctx.fillRect(0,0,w,h);for(let s of stars){s.z-=speed;if(s.z<=0)s.z=w;const k=focal/s.z,x=s.x*k+cx,y=s.y*k+cy,size=Math.max(0,(1-s.z/w)*3);ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(x,y,size,0,2*Math.PI);ctx.fill()}requestAnimationFrame(drawStarfield)}
-    window.addEventListener('resize',initStarfield);initStarfield();drawStarfield()
+    function initStarfield(){
+      w=canvas.width=canvas.offsetWidth
+      h=canvas.height=canvas.offsetHeight
+      cx=w/2
+      cy=h/2
+      focal=w
+      stars=[]
+      for(let i=0;i<count;i++){
+        stars.push({x:(Math.random()-.5)*w,y:(Math.random()-.5)*h,z:Math.random()*w})
+      }
+    }
+    function drawStarfield(){
+      ctx.fillStyle='#000'
+      ctx.fillRect(0,0,w,h)
+      for(let s of stars){
+        s.z-=speed
+        if(s.z<=0)s.z=w
+        const k=focal/s.z
+        const x=s.x*k+cx
+        const y=s.y*k+cy
+        const size=Math.max(0,(1-s.z/w)*3)
+        ctx.fillStyle='#fff'
+        ctx.beginPath()
+        ctx.arc(x,y,size,0,2*Math.PI)
+        ctx.fill()
+      }
+      requestAnimationFrame(drawStarfield)
+    }
+    window.addEventListener('resize',initStarfield)
+    initStarfield()
+    drawStarfield()
   </script>
 </body>
 </html>
