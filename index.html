@@ -245,10 +245,6 @@
       margin:0 auto;
       text-align:center
     }
-    .awards-content h2{
-      font-size:3rem;
-      margin-bottom:1rem
-    }
     .wins{
       font-size:4rem;
       display:inline-block;
@@ -304,15 +300,52 @@
     }
     .location{
       background:var(--surface-color);
-      padding:120px 1rem 80px;
-      position:relative
+      padding:120px 1rem 80px
     }
-    .location iframe{
+    .location .inner{
+      max-width:1200px;
+      margin:0 auto;
+      display:flex;
+      gap:2rem;
+      align-items:center
+    }
+    .location h2{
+      font-size:2.5rem;
+      margin-bottom:1rem;
+      color:var(--text-color)
+    }
+    .location-text{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      gap:1rem
+    }
+    .location-text p{
+      font-size:1rem;
+      color:#ccc;
+      line-height:1.5
+    }
+    .location-text .btn{
+      align-self:flex-start
+    }
+    .map-wrapper{
+      flex:1;
+      position:relative;
       width:100%;
-      height:300px;
-      border:none;
+      padding-bottom:56.25%;
       border-radius:8px;
-      margin-top:1rem
+      overflow:hidden
+    }
+    .map-wrapper iframe{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      border:0
+    }
+    @media(max-width:768px){
+      .location .inner{flex-direction:column}
     }
     footer{
       background:var(--surface-color);
@@ -464,18 +497,27 @@
         <div class="prize-card">
           <div class="prize-icon">🏆</div>
           <h4>Community Choice</h4>
-          <p>Mentor Feedback</p>
+          <p>Mentor Feedback Session</p>
         </div>
       </div>
     </div>
   </section>
-  <section id="location" class="location">
-    <div style="max-width:1200px;margin:0 auto;text-align:center">
-      <h1 style="color:var(--primary-color);margin-bottom:1rem">Where to Find Us</h1>
-      <p style="margin-bottom:1rem">Amal Chamama High School<br>Harash 9, Hod Hasharon</p>
-      <iframe src="https://maps.google.com/maps?q=Harash%209,%20Hod%20Hasharon&output=embed" loading="lazy"></iframe>
+ <section id="location" class="location">
+  <div class="inner">
+    <div class="location-text">
+      <h2>Where to Find Us</h2>
+      <p>Amal Chamama High School<br>HaHarash St 9, Hod HaSharon</p>
+      <a href="https://www.google.com/maps/place/HaHarash+St+9,+Hod+HaSharon,+4524082/@32.1317452,34.8933,17z" class="btn" target="_blank">Get Directions</a>
     </div>
-  </section>
+    <div class="map-wrapper">
+      <iframe
+        src="https://maps.google.com/maps?q=32.1317408,34.8981709&z=17&output=embed"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
   <footer>
     <p>© 2025 Amal Chamama Hackathon &amp; Game Jam. All rights reserved.</p>
     <p>Contact: <a href="mailto:info@chamama.org">info@chamama.org</a></p>
