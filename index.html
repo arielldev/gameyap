@@ -12,563 +12,357 @@
   <meta property="og:title" content="האקתון וגיימג'אם עמל חממה">
   <meta property="og:description" content="הצטרפו לאקתון וגיימג'אם של עמל חממה בן 24 שעות! קוד, שיתוף פעולה, התנדבות ופרסים באירוע ידידותי למתחילים עם למידה תומכת בינה מלאכותית.">
   <meta property="og:image" content="https://gameyap-lfql.vercel.app/images/logo.webp">
-  <meta property="og:image:alt" content="לוגו האקתון וגיימג'אם עמל חממה">
-  <meta property="og:site_name" content="האקתון וגיימג'אם עמל חממה">
-  <meta property="og:locale" content="he_IL">
-  <meta property="og:locale:alternate" content="en_US">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://gameyap-lfql.vercel.app/">
-  <meta name="twitter:title" content="האקתון וגיימג'אם עמל חממה">
-  <meta name="twitter:description" content="הצטרפו לאקתון וגיימג'אם של עמל חממה בן 24 שעות! קוד, שיתוף פעולה, התנדבות ופרסים באירוע ידידותי למתחילים עם למידה תומכת בינה מלאכותית.">
-  <meta name="twitter:image" content="https://gameyap-lfql.vercel.app/images/logo.webp">
-  <meta name="twitter:creator" content="@arielelkaslasi">
-  <meta name="theme-color" content="#00baff">
-
+  <meta name="theme-color" content="#ff6a00">
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    html {
-      scroll-behavior: smooth;
-      direction: rtl;
-    }
+    /* === Root & Resets === */
+    html { scroll-behavior: smooth; direction: rtl; }
     :root {
-      --bg-color: #0a0a0a;
-      --surface-color: #1a1a1a;
-      --primary-color: #00baff;
-      --text-color: #f0f0f0;
+      --bg-color: #ffffff;
+      --surface-color: #f9f9f9;
+      --primary-color: #ff6a00;
+      --primary-gradient: linear-gradient(270deg,#ff6a00,#ff9e2c,#ff6a00);
+      --text-color: #111111;
       --transition: .3s ease;
     }
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Assistant', sans-serif; background: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+
+    /* === Keyframes === */
+    @keyframes bgShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    body {
-      font-family: 'Assistant', sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
+    @keyframes floatUp {
+      0%,100% { transform: translateY(0) scale(1); }
+      50%     { transform: translateY(-20px) scale(1.1); }
+    }
+    @keyframes fall { to { transform: translateY(110vh); } }
+    @keyframes animate {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+    @keyframes arrowBounce {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(10px); }
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.5); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50%     { transform: scale(1.1); }
     }
 
-    /* Header & Nav */
+    /* === Header & Nav === */
     header {
-      background: rgba(0,0,0,.8);
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
+      background: rgba(255,255,255,0.9);
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
       backdrop-filter: blur(10px);
     }
     .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 1rem;
     }
-    .logo img {
-      height: 50px;
-    }
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
+    .logo img { height: 50px; }
+    .menu-toggle { display: none; background: none; border: none; cursor: pointer; }
     .menu-toggle span {
-      display: block;
-      width: 25px;
-      height: 3px;
-      margin: 5px 0;
-      background: var(--text-color);
-      transition: transform var(--transition);
+      display: block; width: 25px; height: 3px; margin: 5px 0;
+      background: var(--text-color); transition: transform var(--transition);
     }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-    }
+    .nav-links { list-style: none; display: flex; gap: 1rem; }
     .nav-links a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-weight: 500;
-      padding: .5rem;
-      position: relative;
+      color: var(--text-color); text-decoration: none; font-weight: 500;
+      padding: .5rem; position: relative;
     }
     .nav-links a::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background: var(--primary-color);
+      content: ""; position: absolute; right: 0; bottom: 0;
+      width: 0; height: 2px; background: var(--primary-color);
       transition: width var(--transition);
     }
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+    .nav-links a:hover::after { width: 100%; }
     @media(max-width: 768px) {
       .menu-toggle {
-        display: block;
-        position: absolute;
-        top: 50%;
-        right: 1rem;
+        display: block; position: absolute; top: 50%; right: 1rem;
         transform: translateY(-50%);
       }
       .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--surface-color);
-        flex-direction: column;
-        overflow: hidden;
-        max-height: 0;
-        transition: max-height var(--transition);
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--surface-color); flex-direction: column;
+        overflow: hidden; max-height: 0; transition: max-height var(--transition);
       }
       .nav-open .nav-links { max-height: 300px; }
       .nav-links li { text-align: center; padding: .75rem 0; }
     }
 
-    /* Hero */
-    .hero {
-      position: relative;
-      padding: 160px 1rem 120px;
-      text-align: center;
+    /* === Hero Modern + Decorations === */
+    .hero-modern {
+      position: relative; overflow: hidden; background: var(--bg-color);
+      min-height: 90vh; display: flex; align-items: center;
+      justify-content: center; padding: 2rem 1rem; text-align: center;
     }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,.5);
+    .hero-modern .hero-bg {
+      position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 140%; height: 140%; background: var(--primary-gradient);
+      background-size: 300% 300%; clip-path: polygon(0 0,100% 10%,100% 100%,0 90%);
+      animation: bgShift 12s ease infinite; z-index: 0;
+      opacity: 0.9;
     }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      margin: 0 auto;
+    .hero-modern .hero-content {
+      position: relative; z-index: 2; max-width: 800px;
     }
-    .hero-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--primary-color);
-      animation: fadeInDown 1s ease forwards;
+    .hero-modern .hero-title {
+      font-family: 'Orbitron', sans-serif; font-size: 3.2rem;
+      line-height: 1.1; color: #fff; margin-bottom: 1rem;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.4);
     }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .hero-modern .hero-subtitle {
+      font-size: 1.2rem; color: #f5f5f5; margin-bottom: 1.5rem;
     }
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
+
+    /* Hero Highlights Badges */
     .hero-highlights {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
+      display: flex; gap: .75rem; justify-content: center;
       margin-bottom: 2rem;
     }
-    .hero-highlights li {
-      background: rgba(0,186,255,.1);
+    .hero-highlights .highlight {
+      background: var(--primary-color);
+      color: #fff;
       padding: .5rem 1rem;
       border-radius: 4px;
       font-size: .95rem;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
-    .btn {
-      background: var(--primary-color);
-      color: #000;
-      padding: .8rem 2rem;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background var(--transition);
+
+    .hero-modern .hero-cta .btn {
+      display: inline-block; margin: 0 .5rem;
+      padding: .8rem 2rem; border-radius: 50px; font-weight: 600;
+      transition: transform var(--transition), box-shadow var(--transition);
     }
-    .btn:hover { background: #0088cc; }
+    .hero-modern .btn-primary {
+      background: #fff; color: var(--primary-color);
+    }
+    .hero-modern .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .hero-modern .btn-outline {
+      background: transparent; color: #fff; border: 2px solid #fff;
+    }
+    .hero-modern .btn-outline:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+    }
+
+    /* Blurred Circle Shapes */
+    .hero-modern .hero-shapes .shape {
+      position: absolute; border-radius: 50%; mix-blend-mode: multiply;
+      filter: blur(30px); opacity: 0.6; animation: floatUp ease-in-out infinite;
+    }
+    .shape-1 {
+      width: 250px; height: 250px; bottom: -50px; left: 5%;
+      background: rgba(255,106,0,0.4); animation-duration: 10s;
+    }
+    .shape-2 {
+      width: 350px; height: 350px; top: 5%; right: 10%;
+      background: rgba(255,154,44,0.35); animation-duration: 12s;
+    }
+    .shape-3 {
+      width: 150px; height: 150px; bottom: 25%; right: 30%;
+      background: rgba(255,106,0,0.5); animation-duration: 9s;
+    }
+
+    /* Scroll Indicator */
     .scroll-indicator {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1;
+      position: absolute; bottom: 16px; left: 50%;
+      transform: translateX(-50%); z-index: 2;
     }
     .scroll-indicator span {
-      font-size: 2rem;
-      color: var(--text-color);
-      display: block;
-      animation: arrowBounce 1.5s infinite;
-    }
-    @keyframes arrowBounce {
-      0%,100% { transform: translateY(0) }
-      50%     { transform: translateY(10px) }
+      font-size: 2rem; color: #fff; animation: arrowBounce 1.5s infinite;
     }
 
-    /* What Is Section */
-    .what-is {
-      padding: 100px 1rem;
-      background: var(--bg-color);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .what-is h2 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: var(--primary-color);
-    }
-    .what-is-inner {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .what-item {
-      margin-bottom: 3rem;
-      text-align: right;
-    }
-    .what-item h3 {
-      font-size: 1.8rem;
-      margin-bottom: .5rem;
-    }
-    .what-item hr {
-      border: 0;
-      height: 3px;
-      width: 60px;
-      background: var(--primary-color);
-      border-radius: 2px;
-      margin: .5rem 0 1rem 0;
-      float: right;
-    }
-    .what-item p {
-      clear: both;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      max-width: 700px;
-    }
-    @media(max-width: 768px) {
-      .what-item hr { float: right; margin: .5rem auto 1rem; }
-    }
-
-    /* About Section */
-    .about {
-      background: var(--surface-color);
-      padding: 120px 1rem 80px;
-    }
-    .about-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-      gap: 2rem;
-    }
-    .about-card {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: transform .3s var(--transition), box-shadow .3s var(--transition);
-      cursor: pointer;
-    }
-    .about-card:hover, .about-card:focus-within {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-    }
-    .card-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--primary-color);
-      animation: popIn 0.5s ease forwards;
-    }
-    @keyframes popIn {
-      from { opacity: 0; transform: scale(0.5) }
-      to   { opacity: 1; transform: scale(1) }
-    }
-    .card-title {
-      font-size: 1.3rem;
-      margin-bottom: .5rem;
-      color: var(--text-color);
-      font-weight: 600;
-    }
-    .card-desc {
-      font-size: 1rem;
-      color: #ccc;
-      margin-bottom: 1rem;
-    }
-    .card-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      color: #aaa;
-    }
-    .card-list li {
-      margin-bottom: .4rem;
-      font-size: .95rem;
-    }
-
-    /* Awards Section */
-    .starfield-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-    .awards {
-      background: var(--surface-color);
-      padding: 120px 1rem 80px;
-      position: relative;
-    }
-    .awards-content {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .wins {
-      font-size: 4rem;
-      display: inline-block;
-      background: linear-gradient(270deg, var(--primary-color), #4facfe, #00f2fe);
-      background-size: 200% 200%;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientBG 5s ease infinite;
-    }
-    @keyframes gradientBG {
-      0%   { background-position:0% 50% }
-      50%  { background-position:100% 50% }
-      100% { background-position:0% 50% }
-    }
-    .prizes-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .prize-card {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: transform .3s var(--transition), box-shadow .3s var(--transition);
-      cursor: default;
-    }
-    .prize-card:hover, .prize-card:focus-within {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-    }
-    .prize-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--primary-color);
-      animation: popIn 0.5s ease forwards;
-    }
-    .prize-card h4 {
-      font-size: 1.5rem;
-      margin-bottom: .5rem;
-      color: var(--primary-color);
-      font-weight: 600;
-    }
-    .prize-card p {
-      font-size: 1rem;
-      color: #ccc;
-      line-height: 1.4;
-    }
-
-    /* Location Section */
-    .location {
-      background: var(--surface-color);
-      padding: 120px 1rem 80px;
-    }
-    .location .inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .location h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--text-color);
-    }
-    .location-text {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .location-text p {
-      font-size: 1rem;
-      color: #ccc;
-      line-height: 1.5;
-    }
-    .location-text .btn {
-      align-self: flex-start;
-    }
-    .map-wrapper {
-      flex: 1;
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .map-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    /* Footer & Register Button */
-    footer {
-      background: var(--surface-color);
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-    footer a {
-      color: var(--primary-color);
-    }
-    .register-btn {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: var(--primary-color);
-      color: #000;
-      padding: 1rem 1.5rem;
-      border-radius: 50px;
-      font-weight: bold;
-      box-shadow: 0 4px 15px rgba(0,186,255,0.4);
-      z-index: 1001;
-      text-decoration: none;
-      transition: transform var(--transition), box-shadow var(--transition);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { transform: scale(1) }
-      50%     { transform: scale(1.1) }
-    }
-
-    /* Responsive Adjustments */
     @media(max-width: 780px) {
-      .hero { padding: 100px 1rem 60px }
-      .hero-title { font-size: 2.6rem }
-      .scroll-indicator { bottom: 5px }
+      .hero-modern .hero-title { font-size: 2.4rem; }
+      .hero-modern .hero-subtitle { font-size: 1rem; }
+      .hero-modern .hero-shapes .shape { display: none; }
     }
-    /* From Uiverse.io by csemszepp */
-    @keyframes animate {
-      0% {
-        filter: hue-rotate(0deg);
-      }
-      100% {
-        filter: hue-rotate(360deg);
-      }
-    }
+
+    /* === Cube Animation in Hero (reverted) === */
     .cube-out {
-      position: absolute;
-      top: 90%;
-      left: 20%;
+      position: absolute; top: 90%; left: 20%; z-index: 1;
     }
-    .container {
-      position: relative;
-      top: -80px;
-      transform: skewY(-20deg);
+    .cube-out .container {
+      position: relative; top: -80px; transform: skewY(-20deg);
       animation: animate 5s linear infinite;
     }
-    .container .cube {
-      position: relative;
-      z-index: 2;
+    .cube-out .container .cube {
+      position: relative; z-index: 2;
     }
-    .container .cube:nth-child(2) {
-      z-index: 1;
-      translate: -60px -60px;
+    .cube-out .container .cube:nth-child(2) {
+      z-index: 1; transform: translate(-60px, -60px);
     }
-    .container .cube:nth-child(3) {
-      z-index: 3;
-      translate: 60px 60px;
+    .cube-out .container .cube:nth-child(3) {
+      z-index: 3; transform: translate(60px, 60px);
     }
-    .container .cube div {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      translate: calc(-70px * var(--x)) calc(-60px * var(--y));
+    .cube-out .container .cube div {
+      position: absolute; display: flex; flex-direction: column; gap: 30px;
+      transform: translate(calc(-70px * var(--x)), calc(-60px * var(--y)));
     }
-    .container .cube span {
-      position: relative;
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      background: #dcdcdc;
-      z-index: calc(1 * var(--i));
+    .cube-out .container .cube span {
+      display: inline-block; width: 40px; height: 40px;
+      background: #dcdcdc; transition: 1.5s;
+    }
+    .cube-out .container .cube span:hover {
+      background: #ef4149; filter: drop-shadow(0 0 30px #ef4149);
+      transition: 0s;
+    }
+    .cube-out .container .cube span:hover:before,
+    .cube-out .container .cube span:hover:after {
+      background: #ef4149; transition: 0s;
+    }
+    .cube-out .container .cube span:before {
+      content: ""; position: absolute; left: -40px; width: 40px; height: 100%;
+      background: #fff; transform-origin: right; transform: skewY(45deg);
+      transition: 1.5s;
+    }
+    .cube-out .container .cube span:after {
+      content: ""; position: absolute; top: -40px; width: 100%; height: 40px;
+      background: #f2f2f2; transform-origin: bottom; transform: skewX(45deg);
       transition: 1.5s;
     }
 
-    @media(max-width: 1200px) {
-      .cube-out {
-        top: 90%;
-        left: 10%;
-      }
-     
-      .container .cube span {
-        width: 40px;
-        height: 40px;
-      }
+    /* === What Is Section === */
+    .what-is {
+      position: relative; padding: 100px 1rem; background: var(--bg-color); text-align: center;
     }
-       @media(max-width: 900px) {
-      .cube-out {
-        top: 99%;
-        left: 5%;
-      }
-     
-      .container .cube span {
-        width: 40px;
-        height: 40px;
-      }
+    .what-is h2 {
+      font-size: 2.5rem; margin-bottom: 2rem;
+      background: var(--primary-gradient); background-size: 200% 200%;
+      -webkit-background-clip: text; color: transparent;
+      animation: bgShift 3s ease infinite;
     }
-    .container .cube span:hover {
-      transition: 0s;
-      background: #ef4149;
-      filter: drop-shadow(0 0 30px #ef4149);
+    .what-is-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+    .what-item { margin-bottom: 3rem; text-align: right; }
+    .what-item h3 { font-size: 1.8rem; margin-bottom: .5rem; }
+    .what-item hr {
+      border: 0; height: 3px; width: 60px; background: var(--primary-color);
+      border-radius: 2px; margin: .5rem 0 1rem 0; float: right;
     }
-    .container .cube span:hover:before,
-    .container .cube span:hover:after {
-      transition: 0s;
-      background: #ef4149;
+    .what-item p {
+      clear: both; font-size: 1.1rem; line-height: 1.6; max-width: 700px; margin: 0 auto;
     }
-    .container .cube span:before {
-      content: "";
-      position: absolute;
-      left: -40px;
-      width: 40px;
-      height: 100%;
-      background: #fff;
-      transform-origin: right;
-      transform: skewY(45deg);
-      transition: 1.5s;
+
+    /* === About Section === */
+    .about {
+      position: relative; background: var(--surface-color); padding: 120px 1rem 80px;
     }
-    .container .cube span:after {
-      content: "";
-      position: absolute;
-      top: -40px;
-      left: 0px;
-      width: 100%;
-      height: 40px;
-      background: #f2f2f2;
-      transform-origin: bottom;
-      transform: skewX(45deg);
-      transition: 1.5s;
+    .about-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 2rem; position: relative; z-index: 1; }
+    .about-card {
+      background: #fff; border-radius: 12px; padding: 2rem 1.5rem;
+      text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
     }
+    .about-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+    .card-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary-color); animation: popIn 0.5s ease forwards; }
+    .card-title { font-size: 1.3rem; margin-bottom: .5rem; font-weight: 600; }
+    .card-desc { font-size: 1rem; color: #555; margin-bottom: 1rem; }
+    .card-list { list-style: none; padding: 0; margin: 0; color: #666; }
+    .card-list li { margin-bottom: .4rem; font-size: .95rem; }
+
+    /* === Awards Section with Confetti === */
+    #confetti {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0; pointer-events: none;
+    }
+    .awards {
+      position: relative; background: var(--surface-color); padding: 120px 1rem 80px; overflow: hidden;
+    }
+    .awards-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; text-align: center; }
+    .awards-content h2 {
+      font-style: italic; font-size: 2.5rem; margin-bottom: 1rem;
+      background: var(--primary-gradient); background-size: 200% 200%;
+      -webkit-background-clip: text; color: transparent;
+      animation: bgShift 3s ease infinite;
+    }
+    .wins { font-size: 4rem; color: var(--primary-color); }
+    .prizes-grid {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .prize-card {
+      background: #fff; border-radius: 12px; padding: 2rem 1.5rem;
+      text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .prize-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+    .prize-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary-color); animation: popIn 0.5s ease forwards; }
+    .prize-card h4 { font-size: 1.5rem; margin-bottom: .5rem; color: var(--primary-color); font-weight: 600; }
+    .prize-card p { font-size: 1rem; color: #555; line-height: 1.4; }
+
+    /* === Location Section === */
+    .location {
+      position: relative; background: var(--bg-color); padding: 120px 1rem 80px;
+    }
+    .location .inner {
+      max-width: 1200px; margin: 0 auto; display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; position: relative; z-index: 1;
+    }
+    .location h2 {
+      font-size: 2.5rem; margin-bottom: 1rem;
+      background: var(--primary-gradient); background-size: 200% 200%;
+      -webkit-background-clip: text; color: transparent;
+      animation: bgShift 3s ease infinite;
+    }
+    .location-text { flex: 1; display: flex; flex-direction: column; gap: 1rem; }
+    .location-text p { font-size: 1rem; color: #555; line-height: 1.5; }
+    .map-wrapper {
+      flex: 1; position: relative; width: 100%; padding-bottom: 56.25%;
+      border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .map-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+    /* === Footer & Register Button === */
+    footer {
+      background: var(--surface-color); text-align: center; padding: 2rem 1rem;
+    }
+    footer a { color: var(--primary-color); }
+    .register-btn {
+      position: fixed; bottom: 2rem; right: 2rem; background: var(--primary-color);
+      color: #fff; padding: 1rem 1.5rem; border-radius: 50px; font-weight: bold;
+      box-shadow: 0 4px 15px rgba(255,106,0,0.4); z-index: 1001;
+      text-decoration: none; transition: transform var(--transition), box-shadow var(--transition);
+      animation: pulse 2s infinite;
+    }
+    .custom-shape-divider-bottom-1748429055 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1748429055 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.custom-shape-divider-bottom-1748429055 .shape-fill {
+    fill: #FFFFFF;
+}
+@media(max-width: 768px) {
+.custom-shape-divider-bottom-1748429055 svg {
+    height: 100px;  
+    }
+  }
   </style>
 </head>
 <body>
@@ -588,196 +382,105 @@
     </div>
   </header>
 
-  <section class="hero" id="home">
+  <!-- Modern Hero Section with Highlights & Cubes -->
+  <section class="hero-modern" id="home">
+    <div class="hero-bg"></div>
     <div class="hero-content">
-      <h1 class="hero-title">האקתון וגיימג'אם עמל חממה<br>24 שעות של קוד, יצירתיות ואתגר</h1>
-      <p>קוד, שת"פ והתנדבות באירוע חינוכי של האקתון וגיימג'אם!</p>
-      <ul class="hero-highlights">
-        <li>24 שעות</li>
-        <li>מתאים למתחילים</li>
-        <li>למידה תומכת עם בינה מלאכותית</li>
-      </ul>
-      <a href="#what-is" class="btn">מה זה?</a>
+      <h1 class="hero-title">האקתון וגיימג'אם עמל חממה</h1>
+      <p class="hero-subtitle">24 שעות של קוד, יצירתיות ואתגר – ללא גבולות</p>
+      <div class="hero-highlights">
+        <span class="highlight">24 שעות</span>
+        <span class="highlight">מתאים למתחילים</span>
+        <span class="highlight">למידה תומכת AI</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#what-is" class="btn btn-primary">מה זה?</a>
+        <a href="/register/index.html" class="btn btn-outline">הרשמו עכשיו</a>
+      </div>
     </div>
+    <div class="hero-shapes">
+      <span class="shape shape-1"></span>
+      <span class="shape shape-2"></span>
+      <span class="shape shape-3"></span>
+    </div>
+  <div class="custom-shape-divider-bottom-1748429055">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
+    </svg>
+</div>
     <div class="scroll-indicator"><span>↓</span></div>
   </section>
 
+  <!-- What Is Section -->
   <section id="what-is" class="what-is">
     <h2>מהו האקתון וגיימג'אם?</h2>
     <div class="what-is-inner">
       <div class="what-item">
-        <h3>מהו האקתון?</h3>
-        <hr>
+        <h3>מהו האקתון?</h3><hr>
         <p>האקאתון הוא מרתון פיתוח בן 24 שעות שבו צוותים מעצבים, מפתחים ומשיקים פרויקטים חדשים, משתפים פעולה ולומדים טכנולוגיות חדשות יחד.</p>
       </div>
       <div class="what-item">
-        <h3>מהו גיימג'אם?</h3>
-        <hr>
+        <h3>מהו גיימג'אם?</h3><hr>
         <p>גיימג'אם הוא תחרות יצירתית של עיצוב ופיתוח משחקים, בה יוצרים משחקים מקוריים בפרק זמן מוגבל, מציגים אותם לקבל משוב ותמיכה מהמנטורים והקהילה.</p>
-      </div>
-      <div class="cube-out">
-        <div class="container">
-          <div class="cube">
-            <div style="--x:-1; --y:0;">
-              <span style="--i:3;"></span>
-              <span style="--i:2;"></span>
-              <span style="--i:1;"></span>
-            </div>
-            <div style="--x:0; --y:0;">
-              <span style="--i:3;"></span>
-              <span style="--i:2;"></span>
-              <span style="--i:1;"></span>
-            </div>
-            <div style="--x:1; --y:0;">
-              <span style="--i:3;"></span>
-              <span style="--i:2;"></span>
-              <span style="--i:1;"></span>
-            </div>
-          </div>
-          <div class="cube">
-            <div style="--x:-1; --y:0;">
-              <span style="--i:3;"></span>
-              <span style="--i:2;"></span>
-              <span style="--i:1;"></span>
-            </div>
-            <div style="--x:0; --y:0;">
-              <span style="--i:3;"></span>
-              <span style="--i:2;"></span>
-              <span style="--i:1;"></span>
-            </div>
-            <div style="--x:1; --y:0;">
-              <span style="--i:3;"></span>
-              <span style="--i:2;"></span>
-              <span style="--i:1;"></span>
-            </div>
-          </div>
-          <div class="cube">
-            <div style="--x:-1; --y:0;">
-              <span style="--i:3;"></span>
-              <span style="--i:2;"></span>
-              <span style="--i:1;"></span>
-            </div>
-            <div style="--x:0; --y:0;">
-              <span style="--i:3;"></span>
-              <span style="--i:2;"></span>
-              <span style="--i:1;"></span>
-            </div>
-            <div style="--x:1; --y:0;">
-              <span style="--i:3;"></span>
-              <span style="--i:2;"></span>
-              <span style="--i:1;"></span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
+  <!-- About Section -->
   <section id="about" class="about">
     <div class="about-inner">
       <div class="about-card">
-        <div class="card-icon">💻</div>
-        <h3 class="card-title">סוג האירוע</h3>
-        <p class="card-desc">האקאטון וגיימג'אם</p>
-        <ul class="card-list">
-          <li>24-שעת ריצה</li>
-          <li>שיתוף פעולה קבוצתי</li>
-        </ul>
+        <div class="card-icon">💻</div><h3 class="card-title">סוג האירוע</h3><p class="card-desc">האקאטון וגיימג'אם</p>
+        <ul class="card-list"><li>24-שעת ריצה</li><li>שיתוף פעולה קבוצתי</li></ul>
       </div>
       <div class="about-card">
-        <div class="card-icon">🏫</div>
-        <h3 class="card-title">מארחים</h3>
-        <p class="card-desc">תיכון עמל חממה</p>
-        <ul class="card-list">
-          <li>בהנחיית מתנדבים</li>
-          <li>רוח קהילתית</li>
-        </ul>
+        <div class="card-icon">🏫</div><h3 class="card-title">מארחים</h3><p class="card-desc">תיכון עמל חממה</p>
+        <ul class="card-list"><li>בהנחיית מתנדבים</li><li>רוח קהילתית</li></ul>
       </div>
       <div class="about-card">
-        <div class="card-icon">⏰</div>
-        <h3 class="card-title">תאריך ושעה</h3>
-        <p class="card-desc">6 ביוני 2025 | 09:00–09:00</p>
-        <ul class="card-list">
-          <li>פתיחה: 10:00</li>
-          <li>סיום: 22:00</li>
-        </ul>
+        <div class="card-icon">⏰</div><h3 class="card-title">תאריך ושעה</h3><p class="card-desc">6 ביוני 2025 | 09:00–09:00</p>
+        <ul class="card-list"><li>פתיחה: 10:00</li><li>סיום: 22:00</li></ul>
       </div>
       <div class="about-card">
-        <div class="card-icon">📍</div>
-        <h3 class="card-title">מיקום</h3>
-        <p class="card-desc">רחוב החרש 9, הוד השרון</p>
-        <ul class="card-list">
-          <li>תיכון עמל חממה</li>
-        </ul>
+        <div class="card-icon">📍</div><h3 class="card-title">מיקום</h3><p class="card-desc">רחוב החרש 9, הוד השרון</p>
+        <ul class="card-list"><li>תיכון עמל חממה</li></ul>
       </div>
       <div class="about-card">
-        <div class="card-icon">🎯</div>
-        <h3 class="card-title">נושא</h3>
-        <p class="card-desc">אתגר מפתיע</p>
-        <ul class="card-list">
-          <li>נחשף בשידור חי</li>
-          <li>חשבו מהר!</li>
-        </ul>
+        <div class="card-icon">🎯</div><h3 class="card-title">נושא</h3><p class="card-desc">אתגר מפתיע</p>
+        <ul class="card-list"><li>נחשף בשידור חי</li><li>חשבו מהר!</li></ul>
       </div>
       <div class="about-card">
-        <div class="card-icon">📜</div>
-        <h3 class="card-title">חוקים</h3>
-        <p class="card-desc">כיף בהנחיית מתנדבים</p>
-        <ul class="card-list">
-          <li>רק קוד מקורי</li>
-          <li>משחק הוגן</li>
-          <li>בינה מלאכותית מותרת — למדריך בלבד</li>
-          <li>צוותים של 2–3</li>
-        </ul>
+        <div class="card-icon">📜</div><h3 class="card-title">חוקים</h3><p class="card-desc">כיף בהנחיית מתנדבים</p>
+        <ul class="card-list"><li>רק קוד מקורי</li><li>משחק הוגן</li><li>בינה מלאכותית מותרת — למדריך בלבד</li><li>צוותים של 2–3</li></ul>
       </div>
       <div class="about-card">
-        <div class="card-icon">🤖</div>
-        <h3 class="card-title">סיוע בינה מלאכותית</h3>
-        <p class="card-desc">למדו עם AI</p>
-        <ul class="card-list">
-          <li>השתמשו בבינה מלאכותית לרעיונות</li>
-          <li>כתבו בעצמכם</li>
-          <li>תנו קרדיט לעזרה של AI</li>
-        </ul>
+        <div class="card-icon">🤖</div><h3 class="card-title">סיוע בינה מלאכותית</h3><p class="card-desc">למדו עם AI</p>
+        <ul class="card-list"><li>השתמשו בבינה מלאכותית לרעיונות</li><li>כתבו בעצמכם</li><li>תנו קרדיט לעזרה של AI</li></ul>
       </div>
     </div>
   </section>
 
+  <!-- Awards Section with Confetti Canvas -->
   <section id="prizes" class="awards">
-    <canvas id="starfield" class="starfield-canvas"></canvas>
+    <canvas id="confetti"></canvas>
     <div class="awards-content">
-      <h2 style="font-style: italic;">כולם <span class="wins">מנצחים</span></h2>
+      <h2>כולם <span class="wins">מנצחים</span></h2>
       <div class="prizes-grid" dir="ltr">
-        <div class="prize-card">
-          <div class="prize-icon">🥇</div>
-          <h4>מקום ראשון</h4>
-          <p>תעודת הצטיינות</p>
-        </div>
-        <div class="prize-card">
-          <div class="prize-icon">🥈</div>
-          <h4>מקום שני</h4>
-          <p>תעודת הוקרה</p>
-        </div>
-        <div class="prize-card">
-          <div class="prize-icon">🎖️</div>
-          <h4>כל המשתתפים</h4>
-          <p>תעודת השתתפות</p>
-        </div>
-        <div class="prize-card">
-          <div class="prize-icon">🏆</div>
-          <h4>בחירת הקהילה</h4>
-          <p>משוב מהמנטורים</p>
-        </div>
+        <div class="prize-card"><div class="prize-icon">🥇</div><h4>מקום ראשון</h4><p>תעודת הצטיינות</p></div>
+        <div class="prize-card"><div class="prize-icon">🥈</div><h4>מקום שני</h4><p>תעודת הוקרה</p></div>
+        <div class="prize-card"><div class="prize-icon">🎖️</div><h4>כל המשתתפים</h4><p>תעודת השתתפות</p></div>
+        <div class="prize-card"><div class="prize-icon">🏆</div><h4>בחירת הקהילה</h4><p>משוב מהמנטורים</p></div>
       </div>
     </div>
   </section>
 
+  <!-- Location Section -->
   <section id="location" class="location">
     <div class="inner">
       <div class="location-text">
         <h2>איפה למצוא אותנו</h2>
         <p>תיכון עמל חממה<br>רחוב החרש 9, הוד השרון</p>
-        <a href="https://www.google.com/maps/place/HaHarash+St+9,+Hod+HaSharon,+4524082/@32.1317452,34.8933,17z" class="btn" target="_blank">קבלו הוראות הגעה</a>
+        <a href="https://www.google.com/maps/place/HaHarash+St+9,+Hod+HaSharon,+4524082" class="btn btn-primary" target="_blank">קבלו הוראות הגעה</a>
       </div>
       <div class="map-wrapper">
         <iframe src="https://maps.google.com/maps?q=32.1317408,34.8981709&z=17&output=embed" loading="lazy"></iframe>
@@ -785,61 +488,62 @@
     </div>
   </section>
 
+  <!-- Footer & Register Button -->
   <footer>
     <p>© 2025 האקתון וגיימג'אם עמל חממה. כל הזכויות שמורות.</p>
     <p>יצירת קשר: <a href="mailto:info@chamama.org">info@chamama.org</a></p>
   </footer>
-
   <a href="/register/index.html" class="register-btn">הרשמו עכשיו</a>
 
   <script>
+    // Mobile menu toggle
     document.getElementById('menu-btn').addEventListener('click', () => {
       document.getElementById('main-nav').classList.toggle('nav-open');
     });
 
-    const canvas = document.getElementById('starfield'),
-          ctx = canvas.getContext('2d');
-    let w, h, cx, cy, stars = [], focal, speed = 1.5;
-    const count = 600;
-
-    function initStarfield() {
-      w = canvas.width = canvas.offsetWidth;
-      h = canvas.height = canvas.offsetHeight;
-      cx = w / 2;
-      cy = h / 2;
-      focal = w;
-      stars = [];
-      for (let i = 0; i < count; i++) {
-        stars.push({
-          x: (Math.random() - 0.5) * w,
-          y: (Math.random() - 0.5) * h,
-          z: Math.random() * w
+    // Confetti Canvas Effect in Awards Section
+    (function(){
+      const canvas = document.getElementById('confetti'),
+            ctx = canvas.getContext('2d'),
+            pieces = [];
+      let W, H;
+      function init(){
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+        pieces.length = 0;
+        for(let i=0; i<150; i++){
+          pieces.push({
+            x: Math.random()*W,
+            y: Math.random()*H - H,
+            r: Math.random()*6+4,
+            d: Math.random()*150+50,
+            tilt: Math.random()*10-10,
+            color: `hsl(${Math.random()*30+20},70%,50%)`,
+            tiltAngleIncremental: Math.random()*0.07+0.05,
+            tiltAngle:0
+          });
+        }
+      }
+      function draw(){
+        ctx.clearRect(0,0,W,H);
+        pieces.forEach(p=>{
+          ctx.beginPath();
+          ctx.lineWidth = p.r;
+          ctx.strokeStyle = p.color;
+          p.tiltAngle += p.tiltAngleIncremental;
+          p.y += Math.cos(p.d) + 1 + p.r/2;
+          p.x += Math.sin(p.d);
+          p.tilt = Math.sin(p.tiltAngle)*15;
+          ctx.moveTo(p.x+ p.tilt + p.r/2, p.y);
+          ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r/2);
+          ctx.stroke();
         });
+        requestAnimationFrame(draw);
       }
-    }
-
-    function drawStarfield() {
-      ctx.fillStyle = '#000';
-      ctx.fillRect(0, 0, w, h);
-      for (let s of stars) {
-        s.z -= speed;
-        if (s.z <= 0) s.z = w;
-        const k = focal / s.z;
-        const x = s.x * k + cx;
-        const y = s.y * k + cy;
-        const size = Math.max(0, (1 - s.z / w) * 3);
-        ctx.fillStyle = '#fff';
-        ctx.beginPath();
-        ctx.arc(x, y, size, 0, 2 * Math.PI);
-        ctx.fill();
-      }
-      requestAnimationFrame(drawStarfield);
-    }
-
-    window.addEventListener('resize', initStarfield);
-    initStarfield();
-    drawStarfield();
+      window.addEventListener('resize', init);
+      init();
+      draw();
+    })();
   </script>
-
 </body>
 </html>
